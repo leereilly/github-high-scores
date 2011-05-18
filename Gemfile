@@ -1,4 +1,9 @@
 source "http://rubygems.org"
+source "http://rubygems.org"
+source "http://gems.rubyforge.org"
+source "http://gems.rubyonrails.org"
+source "http://gems.github.com"
+source "http://gemcutter.org"
 
 gem "addressable", "2.2.5"
 gem "bcrypt-ruby", "2.1.4"
