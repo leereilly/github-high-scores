@@ -1,0 +1,76 @@
+<html>
+    <head>
+    <style>
+    @font-face {
+        font-family: "ArcadeClassic";
+        src: url("font/ArcadeClassic.otf") format("opentype");
+    }
+
+    body {
+        font-family: "ArcadeClassic";
+        /*font-size: 50px;*/
+        letter-spacing: 2px;
+        word-spacing: 0.5em;
+        background-color: black;
+        color: white;
+    }
+
+    td {
+        font-size: 40px;
+    }
+    table {
+        /*vertical-align: center;*/
+        margin-left: auto;
+        margin-right: auto;
+    }
+    </style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script src="js/pixastic.custom.js"></script>
+    <link href="favicon.png" type="image/png" rel="shortcut icon" /> 
+    <link href="favicon.png" type="image/png" rel="icon" />
+    </head>
+    <body>
+        <table style="width: 100%;">
+          <tr>
+
+            <td></td>
+            <td><h1 style="text-align: center; font-size: 200%;">!</h1></td>
+            <td></td>
+          </tr>
+        </table>
+        <table>
+    <tr style="color: yellow;">
+        
+        <td style="text-align: right; padding-right: 1em;">15600</td>
+
+        <td style="width: 10em;">mojombo</td>
+        <td style="text-align: right">San Francisco</td>
+        <td><img src="http://1.gravatar.com/avatar/86debe7ed7ece0f968097a768dcbd5cb"></td>
+    </tr><tr style="color: white;">
+        
+        <td style="text-align: right; padding-right: 1em;">5200</td>
+        <td style="width: 10em;">schacon</td>
+
+        <td style="text-align: right">San Francisco, CA</td>
+        <td><img src="http://1.gravatar.com/avatar/86debe7ed7ece0f968097a768dcbd5cb"></td>
+    </tr><tr style="color: orange;">
+        
+        <td style="text-align: right; padding-right: 1em;">3400</td>
+        <td style="width: 10em;">defunkt</td>
+        <td style="text-align: right">San Francisco, CA</td>
+				<td><img src="http://1.gravatar.com/avatar/86debe7ed7ece0f968097a768dcbd5cb"></td>
+    </tr>
+    </table>
+		<!--<h2 style="text-align: center;">Sorry, but the Octobeer is another castle!</h2>
+		<center><img src = "http://puddlesgathering.com/blog/img-jb_keyboard_cats_01.png"></center>-->
+		<script>
+		var img = new Image();
+		img.onload = function() {
+			Pixastic.process(img, "mosaic", {blockSize:30});
+		}
+		document.body.appendChild(img);
+		img.src = "http://puddlesgathering.com/blog/img-jb_keyboard_cats_01.png";		
+		</script>
+    </body>
+
+</html>

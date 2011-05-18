@@ -1,0 +1,43 @@
+<%= erb :header %>
+
+<h2><a href="/<%= @user.login %>"><%= @user.login %></a></h2>
+
+<img alt="<%= @user.login %><" title="Photo of <%= @user.name %>" style="float:right;padding: 10px 10px 10px 10px" width="200" height="200" src="http://0.gravatar.com/avatar/<%= @user.gravatar_id %>?s=20&d=identicon">
+
+<dl>
+	<dt>ID</dt>
+	<dd><%= @user.id %></dd>
+		
+	<dt>Login</dt>
+	<dd><%= @user.login %></dd>
+	
+	<dt>Email</dt>
+	<dd><%= @user.email %></dd>
+	
+	<dt>Blog</dt>
+	<dd><%= @user.blog %></dd>
+	
+	<dt>Company</dt>
+	<dd><%= @user.company %></dd>
+	
+	<dt>Location</dt>
+	<dd><%= @user.location %></dd>
+	
+	<dt>Github'n since</dt>
+	<dd><%= @user.created_at %></dd>
+	
+	<dt>Followers</dt>
+	<dd><a href="https://github.com/<%= @user.login %>/followers"><%= @user.followers_count %></a></dd>
+
+	<dt>Following</dt>
+	<dd><a href="https://github.com/<%= @user.login %>/following"><%= @user.following_count %></a></dd>
+
+	<dt>Public repos</dt>
+	<dd><a href="https://github.com/<%= @user.login %>/repositories"><%= @user.public_repo_count %></a></dd>
+
+	<dt>Public gists</dt>
+	<dd><a href="https://gist.github.com/<%= @user.login %>"><%= @user.public_gist_count %></a></dd>
+
+</dl>
+
+<%= erb :footer %>

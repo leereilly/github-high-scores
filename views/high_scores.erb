@@ -1,0 +1,24 @@
+<%= erb :header %>
+
+<h2><a href="/<%= @user %>"><%= @user %></a> >> <a href="/<%= @user %>/<%= @repo %>"><%= @repo %></a> >> <a href="/<%= @user %>/<%= @repo %>/high_scores/">High Scores</a></h2>
+
+<table>
+	<tr>
+		<th class="small">Score</th>
+		<th class="small">Avatar</th>
+		<th class="small">User</th>
+	</tr>
+	<% @high_scores.each do |high_score| %>
+	<tr>
+		<td class="small"><%= high_score[:contributions]*100 %></td>
+		<td class="small"><img src="http://0.gravatar.com/avatar/<%= high_score[:gravatar_id] %>?s=10&d=identicon" with="50" height="50"></td>
+		<td class="small"><a href="/<%= high_score[:login] %>"><%= high_score[:login] %></a></td>
+	</tr>
+	<% end %>
+</table>
+<p>Permalink: https://github.com/<%= @user %>/<%= @repo %></p>
+
+<p><a href="http://twitter.com/share?url=http%3A%2F%2Fdev.twitter.com%2Fpages%2Ftweet-button" target="_blank">TWEET THIS!</a></p>
+
+<%= erb :footer %>
+
