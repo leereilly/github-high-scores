@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 gem "addressable", "2.2.5"
-gem "bcrypt-ruby", "2.1.4")"
+gem "bcrypt-ruby", "2.1.4"
 gem "bundler", "1.0.13"
 gem "configuration", "1.2.0"
 gem "data_mapper", "1.1.0"
