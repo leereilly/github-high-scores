@@ -7,7 +7,7 @@ source "http://gemcutter.org"
 
 gem "addressable", "2.2.5"
 gem "bcrypt-ruby", "2.1.4"
-gem "bundler", "1.0.13"
+gem "bundler", "1.0.7"
 gem "configuration", "1.2.0"
 gem "data_mapper", "1.1.0"
 gem "data_objects", "0.10.5"
