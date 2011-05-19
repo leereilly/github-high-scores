@@ -5,7 +5,7 @@ require 'json'
 require 'uri'
 
 DataMapper::Logger.new($stdout, :debug)
-DataMapper.setup(:default, 'sqlite:////Users/lreilly/Projects/github-scores.com/db/db.db')
+DataMapper.setup(:default, 'mysql://ryactive:viper1@mysql.ryactive-dev.com/collegebound_dev')
 
 class Repo
   include DataMapper::Resource
@@ -18,7 +18,7 @@ class Repo
   property :url, String
   property :homepage, String
   property :name, String
-  property :description, String  
+  property :description, Text  
   property :parent, String  
   property :has_issues, String  
   property :source, String
@@ -80,5 +80,5 @@ class Repo
   end
 end
 
-DataMapper.auto_upgrade!
+DataMapper.auto_migrate!
 

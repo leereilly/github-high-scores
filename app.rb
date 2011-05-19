@@ -15,13 +15,13 @@ DataMapper::Logger.new(STDOUT, :debug)
 disable :show_exceptions
 set :environment, :production
   
-configure :development do
-  DataMapper.setup(:default, 'sqlite:////Users/lreilly/Projects/github-scores.com/db/dbdb')
-end
-
-configure :production do
-  DataMapper.setup(:default, 'sqlite:////Users/lreilly/Projects/github-scores.com/db/db.db')
-end
+# configure :development do
+#   DataMapper.setup(:default, 'mysql://ryactive:viper1@mysql.ryactive-dev.com/collegebound_dev')
+# end
+# 
+# configure :production do
+#   DataMapper.setup(:default, 'mysql://ryactive:viper1@mysql.ryactive-dev.com/collegebound_prod')
+# end
 
 error do
   @title = "404"

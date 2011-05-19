@@ -5,7 +5,7 @@ require 'json'
 require 'uri'
 
 DataMapper::Logger.new($stdout, :debug)
-DataMapper.setup(:default, 'sqlite:////Users/lreilly/Projects/github-scores.com/db/db.db')
+DataMapper.setup(:default, 'mysql://ryactive:viper1@mysql.ryactive-dev.com/collegebound_dev')
 
 class User
   include DataMapper::Resource
@@ -80,4 +80,4 @@ class User
   end
 end
 
-DataMapper::auto_upgrade!
+DataMapper::auto_migrate!
