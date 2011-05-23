@@ -4,26 +4,26 @@ Github High Scores is a fun way to rank Github repository contributors in a 8-bi
 
 # INSTALLATION
 
-   git clone git://github.com/leereilly/github-high-scores.git
-   cd github-high-scores
-   ruby app.rb
+    git clone git://github.com/leereilly/github-high-scores.git
+    cd github-high-scores
+    ruby app.rb
 
 # CONFIGURATION
 
 You'll need to set environment variables on your box. Locally, you can set them in your .bash_profile...
 
-   export db_user=some_username
-   export db_pass=some_password
-   export db_host=some_host
-   export db_data=some_database
+    export db_user=some_username
+    export db_pass=some_password
+    export db_host=some_host
+    export db_data=some_database
 
 On Heroku, you can do something like this...
 
-   heroku config:add db_user=XXX db_pass=XXX db_host=XXX db_data=XXX
+    heroku config:add db_user=XXX db_pass=XXX db_host=XXX db_data=XXX
 
 # CONTRIBUTE
 
-Fork + Pull = :beer:
+Fork + pull.
 
 # CREDITS / KUDOS
 * Running with Ruby, Sinatra, Heroku
