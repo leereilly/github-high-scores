@@ -14,21 +14,21 @@ class Repo
   BASE_URL = 'http://github.com/api/' + API_VERSION + '/json/repos/show/'
 
   property :id, Serial
-  property :owner, String
-  property :url, String
-  property :homepage, String
-  property :name, String
+  property :owner, Text
+  property :url, Text
+  property :homepage, Text
+  property :name, Text
   property :description, Text  
-  property :parent, String  
-  property :has_issues, String  
-  property :source, String
-  property :watchers, String  
-  property :has_downloads, String
-  property :fork, String
-  property :forks, String
-  property :has_wiki, String
-  property :pushed_at, String
-  property :open_issues, String
+  property :parent, Text  
+  property :has_issues, Text  
+  property :source, Text
+  property :watchers, Text  
+  property :has_downloads, Text
+  property :fork, Text
+  property :forks, Text
+  property :has_wiki, Text
+  property :pushed_at, Text
+  property :open_issues, Text
   property :updated_at, DateTime
   
   def self.create_from_username_and_repo(username, repo)

@@ -14,21 +14,21 @@ class User
   BASE_URL = 'http://github.com/api/' + API_VERSION + '/json/user/show/'
   
   property :id, Serial
-  property :github_id, String
-  property :gravatar_id, String
-  property :login, String
-  property :email, String  
-  property :name, String  
-  property :blog, String  
-  property :company, String
-  property :location, String
-  property :type, String
-  property :permission, String
-  property :created_at, String
-  property :public_repo_count, String
-  property :public_gist_count, String
-  property :following_count, String
-  property :followers_count, String
+  property :github_id, Text
+  property :gravatar_id, Text
+  property :login, Text
+  property :email, Text  
+  property :name, Text  
+  property :blog, Text  
+  property :company, Text
+  property :location, Text
+  property :type, Text
+  property :permission, Text
+  property :created_at, Text
+  property :public_repo_count, Text
+  property :public_gist_count, Text
+  property :following_count, Text
+  property :followers_count, Text
   property :updated_at, DateTime
   
 
