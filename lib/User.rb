@@ -5,7 +5,8 @@ require 'json'
 require 'uri'
 
 DataMapper::Logger.new($stdout, :debug)
-DataMapper.setup(:default, 'mysql://ryactive:viper1@mysql.ryactive-dev.com/collegebound_dev')
+puts "mysql://#{ENV['db_user']}:#{ENV['db_pass']}@#{ENV['db_host']}/#{ENV['db_data']}"
+DataMapper.setup(:default, "mysql://#{ENV['db_user']}:#{ENV['db_pass']}@#{ENV['db_host']}/#{ENV['db_data']}")
 
 class User
   include DataMapper::Resource

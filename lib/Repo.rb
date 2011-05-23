@@ -5,6 +5,7 @@ require 'json'
 require 'uri'
 
 DataMapper::Logger.new($stdout, :debug)
+puts "mysql://#{ENV['db_user']}:#{ENV['db_pass']}@#{ENV['db_host']}/#{ENV['db_data']}"
 DataMapper.setup(:default, "mysql://#{ENV['db_user']}:#{ENV['db_pass']}@#{ENV['db_host']}/#{ENV['db_data']}")
 
 class Repo
