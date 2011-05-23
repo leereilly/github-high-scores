@@ -15,14 +15,6 @@ DataMapper::Logger.new(STDOUT, :debug)
 disable :show_exceptions
 set :environment, :production
   
-# configure :development do
-#   DataMapper.setup(:default, 'mysql://ryactive:viper1@mysql.ryactive-dev.com/collegebound_dev')
-# end
-# 
-# configure :production do
-#   DataMapper.setup(:default, 'mysql://ryactive:viper1@mysql.ryactive-dev.com/collegebound_prod')
-# end
-
 error do
   @title = "404"
   @text = "Sorry, but this cat is in another castle!"

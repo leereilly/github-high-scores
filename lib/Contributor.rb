@@ -5,7 +5,7 @@ require 'json'
 require 'uri'
 
 DataMapper::Logger.new($stdout, :debug)
-DataMapper.setup(:default, 'sqlite:////Users/lreilly/Projects/github-scores.com/db/db.db')
+DataMapper.setup(:default, "mysql://#{ENV['db_user']}:#{ENV['db_pass']}@#{ENV['db_host']}/#{ENV['db_data']}")
 
 class Contributor
   include DataMapper::Resource
