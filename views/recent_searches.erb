@@ -1,0 +1,9 @@
+<%= erb :header %>
+
+<h2>Recent searches</h2>
+
+<% @repos.each do |repo| %>
+<%= "<p class=\"center\"><a href='/#{repo.owner}/#{repo.name}/high_scores/'>#{repo.owner}/#{repo.name}</p>" %>
+<% end %>
+
+<%= erb :footer %>
