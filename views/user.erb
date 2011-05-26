@@ -2,23 +2,27 @@
 
 <h2><a href="/<%= @user.login %>"><%= @user.login %></a></h2>
 
-<img alt="<%= @user.login %><" title="Photo of <%= @user.name %>" style="float:right;padding: 10px 10px 10px 10px" width="200" height="200" src="http://0.gravatar.com/avatar/<%= @user.gravatar_id %>?s=20&d=identicon">
+<div itemscope itemtype="http://data-vocabulary.org/Person">
+<img itemprop="url" alt="<%= @user.login %><" title="Photo of <%= @user.name %>" style="float:right;padding: 10px 10px 10px 10px" width="200" height="200" src="http://0.gravatar.com/avatar/<%= @user.gravatar_id %>?s=20&d=identicon">
 
 <dl>
 	<dt>ID</dt>
 	<dd><%= @user.id %></dd>
 		
+	<dt>Name</dt>
+	<dd><span itemprop="name"><%= @user.name %></span></dd>	
+		
 	<dt>Login</dt>
-	<dd><%= @user.login %></dd>
+	<dd><span itemprop="nickname"><%= @user.login %></span></dd>
 	
 	<dt>Email</dt>
 	<dd><%= @user.email %></dd>
 	
 	<dt>Blog</dt>
-	<dd><%= @user.blog %></dd>
+	<dd><a href="<%= @user.blog %>" itemprop="url"><%= @user.blog %></a></dd>
 	
 	<dt>Company</dt>
-	<dd><%= @user.company %></dd>
+	<dd><span itemprop="affiliation"><%= @user.company %></span></dd>
 	
 	<dt>Location</dt>
 	<dd><%= @user.location %></dd>
@@ -39,5 +43,6 @@
 	<dd><a href="https://gist.github.com/<%= @user.login %>"><%= @user.public_gist_count %></a></dd>
 
 </dl>
+</div>
 
 <%= erb :footer %>

@@ -10,9 +10,11 @@
 	</tr>
 	<% @high_scores.each do |high_score| %>
 	<tr>
+		<div itemscope itemtype="http://data-vocabulary.org/Person">
 		<td class="small"><%= high_score[:contributions]*100 %></td>
-		<td class="small"><img src="http://0.gravatar.com/avatar/<%= high_score[:gravatar_id] %>?s=10&d=identicon" with="50" height="50"></td>
-		<td class="small"><a href="/<%= high_score[:login] %>"><%= high_score[:login] %></a></td>
+		<td class="small"><img itemprop="photo" src="http://0.gravatar.com/avatar/<%= high_score[:gravatar_id] %>?s=10&d=identicon" with="50" height="50"></td>
+		<td class="small"><span itemprop="nickname"><a href="/<%= high_score[:login] %>"><%= high_score[:login] %></a></span></td>
+		</span>
 	</tr>
 	<% end %>
 </table>
