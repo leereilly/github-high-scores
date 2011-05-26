@@ -14,23 +14,23 @@ class Repo
   API_VERSION = 'v2'
   BASE_URL = 'http://github.com/api/' + API_VERSION + '/json/repos/show/'
 
-  property :id, Serial
-  property :owner, Text
-  property :url, Text
-  property :homepage, Text
-  property :name, Text
-  property :description, Text  
-  property :parent, Text  
-  property :has_issues, Text  
-  property :source, Text
-  property :watchers, Text  
-  property :has_downloads, Text
-  property :fork, Text
-  property :forks, Text
-  property :has_wiki, Text
-  property :pushed_at, Text
-  property :open_issues, Text
-  property :updated_at, DateTime
+  property :id, Serial, :lazy => false
+  property :owner, Text, :lazy => false
+  property :url, Text, :lazy => false
+  property :homepage, Text, :lazy => false
+  property :name, Text, :lazy => false
+  property :description, Text  , :lazy => false
+  property :parent, Text, :lazy => false  
+  property :has_issues, Text, :lazy => false  
+  property :source, Text, :lazy => false
+  property :watchers, Text, :lazy => false  
+  property :has_downloads, Text, :lazy => false
+  property :fork, Text, :lazy => false
+  property :forks, Text, :lazy => false
+  property :has_wiki, Text, :lazy => false
+  property :pushed_at, Text, :lazy => false
+  property :open_issues, Text, :lazy => false
+  property :updated_at, DateTime, :lazy => false
   
   def self.create_from_username_and_repo(username, repo)
     repo_data_url = Repo.get_repo_data_url(username, repo)
@@ -81,5 +81,5 @@ class Repo
   end
 end
 
-DataMapper.auto_migrate!
+DataMapper.auto_upgrade!
 

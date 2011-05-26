@@ -14,23 +14,23 @@ class User
   API_VERSION = 'v2'
   BASE_URL = 'http://github.com/api/' + API_VERSION + '/json/user/show/'
   
-  property :id, Serial
-  property :github_id, Text
-  property :gravatar_id, Text
-  property :login, Text
-  property :email, Text  
-  property :name, Text  
-  property :blog, Text  
-  property :company, Text
-  property :location, Text
-  property :type, Text
-  property :permission, Text
-  property :created_at, Text
-  property :public_repo_count, Text
-  property :public_gist_count, Text
-  property :following_count, Text
-  property :followers_count, Text
-  property :updated_at, DateTime
+  property :id, Serial, :lazy => false
+  property :github_id, Text, :lazy => false
+  property :gravatar_id, Text, :lazy => false
+  property :login, Text, :lazy => false
+  property :email, Text, :lazy => false  
+  property :name, Text, :lazy => false  
+  property :blog, Text, :lazy => false  
+  property :company, Text, :lazy => false
+  property :location, Text, :lazy => false
+  property :type, Text, :lazy => false
+  property :permission, Text, :lazy => false
+  property :created_at, Text, :lazy => false
+  property :public_repo_count, Text, :lazy => false
+  property :public_gist_count, Text, :lazy => false
+  property :following_count, Text, :lazy => false
+  property :followers_count, Text, :lazy => false
+  property :updated_at, DateTime, :lazy => false
   
 
   def self.create_from_username(username)
@@ -81,4 +81,4 @@ class User
   end
 end
 
-DataMapper::auto_migrate!
+DataMapper::auto_upgrade!

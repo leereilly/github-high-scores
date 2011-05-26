@@ -46,10 +46,11 @@ get '/' do
   end
 end
 
-get '/recent/?' do
+get '/recent_searches/?' do
    @repos = Repo.all(:limit => 5, :order => [ :updated_at.desc ]) 
+   puts @repos.inspect
    @display_small_search = true
-   erb :recent
+   erb :recent_searches
 end
 
 
