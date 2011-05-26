@@ -78,6 +78,11 @@ p.center {
    text-align: center;
 }
 
+p.copyright {
+   text-align: center;
+	 font-size: 12px;
+}
+
 h1 {
 	text-align: lightblue;
 }
