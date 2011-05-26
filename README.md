@@ -30,6 +30,7 @@ Fork + pull.
 * Powered by the Github API
 * Written by Lee Reilly
 * Octocat logo used with permission
+* Inspiration from http://twistedmatrix.com/highscores/
 
 ## Known Issues / Bugs / Limitations
 * The GitHub API only allows 60 requests per minute per IP address.
