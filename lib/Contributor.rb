@@ -4,11 +4,8 @@ require 'net/http'
 require 'json'
 require 'uri'
 
-class Contributor
+class Contributor < BaseModel
   include DataMapper::Resource
-
-  API_VERSION = 'v2'
-  BASE_URL = 'http://github.com/api/' + API_VERSION + '/json/user/show/'
 
   property :id, Serial
   property :login, String
@@ -19,7 +16,7 @@ class Contributor
     stored_user = User::create_from_username(user)
     stored_repo = Repo::create_from_username_and_repo(user, repo)
 
-    contributors_url = "http://github.com/api/v2/json/repos/show/#{user}/#{repo}/contributors"
+    contributors_url = REPO_BASE_URL + "#{user}/#{repo}/contributors"
     contributors_feed = Net::HTTP.get_response(URI.parse(contributors_url))
     contributors = contributors_feed.body
     contributors_result = JSON.parse(contributors)

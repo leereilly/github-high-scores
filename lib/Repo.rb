@@ -4,11 +4,8 @@ require 'net/http'
 require 'json'
 require 'uri'
 
-class Repo
+class Repo < BaseModel
   include DataMapper::Resource
-
-  API_VERSION = 'v2'
-  BASE_URL = 'http://github.com/api/' + API_VERSION + '/json/repos/show/'
 
   property :id, Serial, :lazy => false
   property :owner, Text, :lazy => false
@@ -73,7 +70,7 @@ class Repo
   end
 
   def self.get_repo_data_url(username, repo)
-    return BASE_URL + username + '/' + repo
+    return REPO_BASE_URL + username + '/' + repo
   end
 end
 

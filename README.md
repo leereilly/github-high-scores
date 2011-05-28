@@ -2,6 +2,18 @@
 
 Github High Scores is a fun way to rank Github repository contributors in a 8-bit, 80's-tastic viewing environment.
 
+## iCalendar
+
+This is an extension to convert the most recent commit log of a repo into [iCalendar](http://tools.ietf.org/html/rfc5545) format, to be included into iCal.
+
+This will generate events which are 30 minutes in duration -- there is no really easy way to specify a duration for a commit.
+
+To use:
+   http://example.com/<user>/<repo>.ics
+   http://example.com/<user>/<repo>/<branch>.ics
+
+branch defaults to master, if not provided.
+
 ## Installation
 
     git clone git://github.com/leereilly/github-high-scores.git

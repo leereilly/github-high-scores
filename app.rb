@@ -21,8 +21,10 @@ dburl = case ENV['db_use']
         end
 DataMapper.setup(:default, dburl)
 
+require 'helpers'
 require 'User'
 require 'Repo'
+require 'Commit'
 
 disable :show_exceptions
 set :environment, :production
@@ -65,7 +67,6 @@ get '/recent_searches/?' do
    erb :recent_searches
 end
 
-
 get '/credits/?' do
   erb :credits
 end
@@ -78,6 +79,22 @@ end
 get '/about/?' do
   @display_small_search = true
   erb :about
+end
+
+get '/:user/:repo/:branch.ics' do
+  @branch = params[:branch]
+  @user = User::create_from_username(params[:user])
+  @repo = Repo::create_from_username_and_repo(params[:user], params[:repo])
+  @commits = Commit::find_for(@repo, @branch)
+  [200, { "Content-Type"=> "text/calendar; charset=UTF-8" }, erb(:ical)]
+end
+
+get '/:user/:repo.ics' do
+  @branch = "master"
+  @user = User::create_from_username(params[:user])
+  @repo = Repo::create_from_username_and_repo(params[:user], params[:repo])
+  @commits = Commit::find_for(@repo, @branch)
+  [200, { "Content-Type"=> "text/calendar; charset=UTF-8" }, erb(:ical)]
 end
 
 get '/:user/:repo/?' do
