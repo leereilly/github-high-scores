@@ -27,7 +27,7 @@ class Commit < BaseModel
       DTSTART:#{dtstart.ical_timestamp}
       DTSTAMP:#{dtstamp.ical_timestamp}
       SUMMARY:#{summary}
-      DESCRIPTION:#{@json['message']}
+      DESCRIPTION:#{@json['message'].gsub(/\n/,'\n')}
       CREATED:#{dtstamp.ical_timestamp}
       DTEND:#{(dtstart + 1/48.0).ical_timestamp}
       LOCATION:#{url}
