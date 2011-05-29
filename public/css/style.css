@@ -46,6 +46,10 @@ th.small {
 		color: yellow;
 }
 
+td.small:first-child {
+    text-align: right;
+}
+
 table {
     vertical-align: center;
     margin-left: auto;
