@@ -133,7 +133,7 @@ def get_high_scores(user, repo)
     stored_repo = Repo::create_from_username_and_repo(user, repo)
     puts "Storing repo: #{stored_repo}"
         
-    contributors_url = "http://github.com/api/v2/json/repos/show/#{user}/#{repo}/contributors"
+    contributors_url = "http://github.com/api/v2/json/repos/show/#{user}/#{repo}/contributors/anon"
 
     contributors_feed = Net::HTTP.get_response(URI.parse(contributors_url))
     contributors = contributors_feed.body
@@ -143,6 +143,7 @@ def get_high_scores(user, repo)
     repository_contributors.each do |repository_contributor|
       user_hash = Hash.new
       user_hash[:login] = repository_contributor['login']
+      user_hash[:name] = repository_contributor['name']
       user_hash[:email] = repository_contributor['email']
       user_hash[:gravatar_id] = repository_contributor['gravatar_id']
       user_hash[:location] = repository_contributor['location']
