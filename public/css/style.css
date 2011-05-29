@@ -83,6 +83,11 @@ p.copyright {
 	 font-size: 12px;
 }
 
+p.small {	 
+	text-align: center;
+	font-size: 11px;
+}
+
 h1 {
 	text-align: lightblue;
 }
