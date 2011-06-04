@@ -27,7 +27,7 @@ Fork + pull.
 
 ## Credits
 * Running with Ruby, Sinatra, Heroku
-* Powered by the Github API
+* Powered by the [Github API](http://develop.github.com/)
 * Written by Lee Reilly
 * Octocat logo used with permission
 * Inspiration from http://twistedmatrix.com/highscores/
