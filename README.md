@@ -71,6 +71,7 @@ Fork + pull.
 * [Jonas Obrist a.k.a. ojii](http://github-high-scores.heroku.com/ojii) for pointing out than anonymous users were being ignored
 * [Chris Lee a.k.a. cleercode](http://github-high-scores.heroku.com/cleercode) for corrocting my speeling
 * [Jesse Andrews a.k.a. anotherjesse](http://github-high-scores.heroku.com/anotherjesse) for some UI cleanup
+* [Gerrit Riessen a.k.a gorenje](https://github.com/gorenje) - for some refactoring
 
 ## Known Issues / Bugs / Limitations
 * The GitHub API only allows 60 requests per minute per IP address.
