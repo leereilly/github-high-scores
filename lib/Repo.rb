@@ -26,10 +26,6 @@ class Repo < BaseModel
   property :open_issues, Text, :lazy => false
   property :updated_at, DateTime, :lazy => false
 
-  def ical_uuid
-    UUIDTools::UUID.sha1_create(UUIDTools::UUID_DNS_NAMESPACE, self.url).to_s.upcase
-  end
-
   def self.create_from_username_and_repo(username, repo)
     repo_data_url = Repo.get_repo_data_url(username, repo)
 
