@@ -79,22 +79,6 @@ get '/about/?' do
   erb :about
 end
 
-get '/:user/:repo/:branch.ics' do
-  @branch = params[:branch]
-  @user = User::create_from_username(params[:user])
-  @repo = Repo::create_from_username_and_repo(params[:user], params[:repo])
-  @commits = Commit::find_for(@repo, @branch)
-  [200, { "Content-Type"=> "text/calendar; charset=UTF-8" }, erb(:ical)]
-end
-
-get '/:user/:repo.ics' do
-  @branch = "master"
-  @user = User::create_from_username(params[:user])
-  @repo = Repo::create_from_username_and_repo(params[:user], params[:repo])
-  @commits = Commit::find_for(@repo, @branch)
-  [200, { "Content-Type"=> "text/calendar; charset=UTF-8" }, erb(:ical)]
-end
-
 get '/:user/:repo/?' do
   @user = User::create_from_username(params[:user])
   @repo = Repo::create_from_username_and_repo(params[:user], params[:repo])
