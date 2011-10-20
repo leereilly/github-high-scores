@@ -29,14 +29,11 @@ class User < BaseModel
   def self.create_from_username(username)
     if found_user = User.first(:login => username)
       if Time.now - Time.parse(found_user.updated_at.to_s) <= 60*60*24
-        puts "User created less than 24 hours ago. Returning DB record"
         return found_user
       else
-        puts "Updating current user"
         user = found_user
       end
     else
-      puts "User not found; using web services"
       user = User.new
     end
 
