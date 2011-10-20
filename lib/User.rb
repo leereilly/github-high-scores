@@ -4,23 +4,16 @@ require 'net/http'
 require 'json'
 require 'uri'
 
-DataMapper::Logger.new($stdout, :debug)
-puts "mysql://#{ENV['db_user']}:#{ENV['db_pass']}@#{ENV['db_host']}/#{ENV['db_data']}"
-DataMapper.setup(:default, "mysql://#{ENV['db_user']}:#{ENV['db_pass']}@#{ENV['db_host']}/#{ENV['db_data']}")
-
-class User
+class User < BaseModel
   include DataMapper::Resource
-  
-  API_VERSION = 'v2'
-  BASE_URL = 'http://github.com/api/' + API_VERSION + '/json/user/show/'
-  
+
   property :id, Serial, :lazy => false
   property :github_id, Text, :lazy => false
   property :gravatar_id, Text, :lazy => false
   property :login, Text, :lazy => false
-  property :email, Text, :lazy => false  
-  property :name, Text, :lazy => false  
-  property :blog, Text, :lazy => false  
+  property :email, Text, :lazy => false
+  property :name, Text, :lazy => false
+  property :blog, Text, :lazy => false
   property :company, Text, :lazy => false
   property :location, Text, :lazy => false
   property :type, Text, :lazy => false
@@ -31,10 +24,10 @@ class User
   property :following_count, Text, :lazy => false
   property :followers_count, Text, :lazy => false
   property :updated_at, DateTime, :lazy => false
-  
+
 
   def self.create_from_username(username)
-    if found_user = User.first(:login => username)    
+    if found_user = User.first(:login => username)
       if Time.now - Time.parse(found_user.updated_at.to_s) <= 60*60*24
         puts "User created less than 24 hours ago. Returning DB record"
         return found_user
@@ -46,17 +39,17 @@ class User
       puts "User not found; using web services"
       user = User.new
     end
-    
+
     user_data_url = User.get_user_data_url(username)
     user_data_response = get_json_response(user_data_url)
     user_data = JSON.parse(user_data_response.body)
     user_data = user_data['user']
-    
+
     user.github_id = user_data['id']
     user.gravatar_id = user_data['gravatar_id']
     user.login = user_data['login']
     user.email = user_data['email']
-    user.name = user_data['name'] 
+    user.name = user_data['name']
     user.blog = user_data['blog']
     user.company = user_data['company']
     user.location = user_data['location']
@@ -71,13 +64,13 @@ class User
     user.save!
     return user
   end
-  
+
   def self.get_json_response(url)
     Net::HTTP.get_response(URI.parse(url))
   end
 
   def self.get_user_data_url(username)
-    return BASE_URL + username
+    return USER_BASE_URL + username
   end
 end
 

@@ -5,22 +5,25 @@
 <dl>
 	<dt>ID</dt>
 	<dd><%= @repo.id %></dd>
-	
+
 	<dt>URL</dt>
 	<dd><%= @repo.url %></dd>
-	
+
 	<dt>Homepage</dt>
 	<dd><%= @repo.homepage %></dd>
-	
+
 	<dt>Name</dt>
 	<dd><%= @repo.name %></dd>
-	
+
 	<dt>Description</dt>
 	<dd><%= @repo.description %></dd>
-	
+
 	<dt>Created by</dt>
 	<dd><%= @repo.owner %></dd>
-	
+
+	<dt>Commit Log</dt>
+	<dd>iCal: <a href="/<%= @repo.owner %>/<%= @repo.name %>.ics"><%= request.url %>.ics</a></dd>
+
 </dl>
 
 <%= erb :footer %>

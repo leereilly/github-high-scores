@@ -2,16 +2,37 @@
 
 Github High Scores is a fun way to rank Github repository contributors in a 8-bit, 80's-tastic viewing environment.
 
+## iCalendar
+
+This is an extension to convert the most recent commit log of a repo into [iCalendar](http://tools.ietf.org/html/rfc5545) format, to be included into iCal.
+
+This will generate events which are 30 minutes in duration -- there is no really easy way to specify a duration for a commit.
+
+To use:
+   http://example.com/<user>/<repo>.ics
+   http://example.com/<user>/<repo>/<branch>.ics
+
+branch defaults to master, if not provided.
+
 ## Installation
 
     git clone git://github.com/leereilly/github-high-scores.git
+    rvm install ruby-1.8.7-p334 ## didn't have correct version
     cd github-high-scores
-    ruby app.rb
+    gem install bundler
+    bundle
+    db_use=sqlite_default ruby app.rb
 
 ## Configuration
 
-You'll need to set environment variables on your box. Locally, you can set them in your .bash_profile...
+You can either use mysql, sqlite or sqlite with default setting
 
+For mysql:
+
+You'll need to set environment variables on your box. Locally, you can
+set them in your .bash_profile...
+
+    export db_use=mysql
     export db_user=some_username
     export db_pass=some_password
     export db_host=some_host
@@ -19,7 +40,20 @@ You'll need to set environment variables on your box. Locally, you can set them 
 
 On Heroku, you can do something like this...
 
-    heroku config:add db_user=XXX db_pass=XXX db_host=XXX db_data=XXX
+    heroku config:add db_user=XXX db_pass=XXX db_host=XXX db_data=XXX db_use=mysql
+
+For sqlite:
+
+    export db_use=sqlite
+    export db_path=/some/absolute/path/to/my.db
+
+For sqlite + default:
+
+    export db_use=sqlite_default
+
+This then creates a my.db database file in db/
+
+See app.rb for details.
 
 ## Contribute
 
