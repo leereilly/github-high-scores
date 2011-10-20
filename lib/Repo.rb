@@ -35,14 +35,11 @@ class Repo < BaseModel
 
     if found_repo = Repo.first(:owner => username, :name => repo)
       if Time.now - Time.parse(found_repo.updated_at.to_s) <= 60*60*24
-        puts "Repo created less than 24 hours ago. Returning DB record"
         return found_repo
       else
-        puts "Updating current repo"
         repo = found_repo
       end
     else
-      puts "User not found; using web services"
       repo = Repo.new
     end
 

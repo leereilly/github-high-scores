@@ -24,7 +24,6 @@ DataMapper.setup(:default, dburl)
 require 'helpers'
 require 'User'
 require 'Repo'
-require 'Commit'
 
 disable :show_exceptions
 set :environment, :production
@@ -62,7 +61,6 @@ end
 
 get '/recent_searches/?' do
    @repos = Repo.all(:limit => 5, :order => [ :updated_at.desc ])
-   puts @repos.inspect
    @display_small_search = true
    erb :recent_searches
 end
