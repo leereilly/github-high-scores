@@ -38,5 +38,3 @@ class Contributor < BaseModel
 end
 
 DataMapper::auto_upgrade!
-contributors = Contributor::create_from_user_and_repo('leereilly', 'leereilly.net')
-
