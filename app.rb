@@ -20,7 +20,7 @@ dburl = case ENV['db_use']
           exit
         end
 DataMapper.setup(:default, dburl)
-DataMapper.auto_upgrade!
+#DataMapper.auto_upgrade!
 
 require 'helpers'
 require 'User'
