@@ -20,6 +20,7 @@ dburl = case ENV['db_use']
           exit
         end
 DataMapper.setup(:default, dburl)
+DataMapper.auto_upgrade!
 
 require 'helpers'
 require 'User'
@@ -176,3 +177,4 @@ get '/:user/:repo/high_scores/?' do
   @display_small_search = true
   erb :high_scores
 end
+
