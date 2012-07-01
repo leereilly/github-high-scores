@@ -39,7 +39,6 @@ class Repo < BaseModel
 
     repo_data_response = get_json_response(repo_data_url)
     repo_data = JSON.parse(repo_data_response.body)
-    repo_data = repo_data['repository']
 
     repo.owner = repo_data['owner']
     repo.name = repo_data['name']

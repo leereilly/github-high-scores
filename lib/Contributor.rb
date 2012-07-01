@@ -19,8 +19,7 @@ class Contributor < BaseModel
     contributors_url = REPO_BASE_URL + "#{user}/#{repo}/contributors"
     contributors_feed = RestClient.get(contributors_url)
     contributors = contributors_feed.body
-    contributors_result = JSON.parse(contributors)
-    repository_contributors =  contributors_result['contributors']
+    repository_contributors = JSON.parse(contributors)
     contributors_array = Array.new
 
     repository_contributors.each do |repository_contributor|

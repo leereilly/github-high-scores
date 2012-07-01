@@ -143,12 +143,11 @@ def get_high_scores(user, repo)
     stored_repo = Repo::create_from_username_and_repo(user, repo)
     puts "Storing repo: #{stored_repo}"
 
-    contributors_url = "http://github.com/api/v2/json/repos/show/#{user}/#{repo}/contributors"
+    contributors_url = "https://api.github.com/repos/#{user}/#{repo}/collaborators"
 
     contributors_feed = RestClient.get(contributors_url)
     contributors = contributors_feed.body
-    contributors_result = JSON.parse(contributors)
-    repository_contributors =  contributors_result['contributors']
+    repository_contributors = JSON.parse(contributors)
     contributors_array = Array.new
     repository_contributors.each do |repository_contributor|
       user_hash = Hash.new
