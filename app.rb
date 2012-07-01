@@ -1,11 +1,9 @@
 $:.unshift File.join(File.dirname(__FILE__),'lib')
 
 require 'rubygems'
-require 'net/http'
 require 'sinatra'
 require 'json'
 require 'erb'
-require 'uri'
 require 'data_mapper'
 require 'dm-migrations'
 
@@ -147,7 +145,7 @@ def get_high_scores(user, repo)
 
     contributors_url = "http://github.com/api/v2/json/repos/show/#{user}/#{repo}/contributors"
 
-    contributors_feed = Net::HTTP.get_response(URI.parse(contributors_url))
+    contributors_feed = RestClient.get(contributors_url)
     contributors = contributors_feed.body
     contributors_result = JSON.parse(contributors)
     repository_contributors =  contributors_result['contributors']

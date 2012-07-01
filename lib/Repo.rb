@@ -1,8 +1,6 @@
 require 'rubygems'
 require 'data_mapper'
-require 'net/http'
 require 'json'
-require 'uri'
 require 'uuidtools'
 
 class Repo < BaseModel
@@ -64,7 +62,7 @@ class Repo < BaseModel
   end
 
   def self.get_json_response(url)
-    Net::HTTP.get_response(URI.parse(url))
+    RestClient.get(url)
   end
 
   def self.get_repo_data_url(username, repo)
