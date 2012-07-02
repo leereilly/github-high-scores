@@ -150,13 +150,15 @@ def get_high_scores(user, repo)
     repository_contributors = JSON.parse(contributors)
     contributors_array = Array.new
     repository_contributors.each do |repository_contributor|
+
       user_hash = Hash.new
       user_hash[:login] = repository_contributor['login']
       user_hash[:name] = repository_contributor['name']
       user_hash[:email] = repository_contributor['email']
       user_hash[:gravatar_id] = repository_contributor['gravatar_id']
       user_hash[:location] = repository_contributor['location']
-      user_hash[:contributions] = repository_contributor['contributions'].to_i
+
+      user_hash[:contributions] = stored_repo.contributions(user_hash[:login])
       contributors_array << user_hash
     end
     return contributors_array

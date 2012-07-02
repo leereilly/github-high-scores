@@ -40,7 +40,7 @@ class Repo < BaseModel
     repo_data_response = get_json_response(repo_data_url)
     repo_data = JSON.parse(repo_data_response.body)
 
-    repo.owner = repo_data['owner']
+    repo.owner = repo_data['owner']['login']
     repo.name = repo_data['name']
     repo.url = repo_data['url']
     repo.homepage = repo_data['homepage']
@@ -66,6 +66,12 @@ class Repo < BaseModel
 
   def self.get_repo_data_url(username, repo)
     return REPO_BASE_URL + username + '/' + repo
+  end
+
+  def contributions(contributor)
+    uri = "http://octocoder.heroku.com/#{owner}/#{name}/#{contributor}"
+    response = RestClient.get(uri)
+    JSON.parse(response)['count']
   end
 end
 
