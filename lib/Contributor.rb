@@ -17,10 +17,9 @@ class Contributor < BaseModel
     stored_repo = Repo::create_from_username_and_repo(user, repo)
 
     contributors_url = REPO_BASE_URL + "#{user}/#{repo}/contributors"
-    contributors_feed = Net::HTTP.get_response(URI.parse(contributors_url))
+    contributors_feed = RestClient.get(contributors_url)
     contributors = contributors_feed.body
-    contributors_result = JSON.parse(contributors)
-    repository_contributors =  contributors_result['contributors']
+    repository_contributors = JSON.parse(contributors)
     contributors_array = Array.new
 
     repository_contributors.each do |repository_contributor|
@@ -33,7 +32,7 @@ class Contributor < BaseModel
   end
 
   def self.get_json_response(url)
-    Net::HTTP.get_response(URI.parse(url))
+    RestClient.get(url)
   end
 end
 

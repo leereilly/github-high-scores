@@ -1,8 +1,7 @@
 require 'rubygems'
 require 'data_mapper'
-require 'net/http'
 require 'json'
-require 'uri'
+require 'rest-client'
 
 class User < BaseModel
   include DataMapper::Resource
@@ -40,7 +39,6 @@ class User < BaseModel
     user_data_url = User.get_user_data_url(username)
     user_data_response = get_json_response(user_data_url)
     user_data = JSON.parse(user_data_response.body)
-    user_data = user_data['user']
 
     user.github_id = user_data['id']
     user.gravatar_id = user_data['gravatar_id']
@@ -63,7 +61,7 @@ class User < BaseModel
   end
 
   def self.get_json_response(url)
-    Net::HTTP.get_response(URI.parse(url))
+    RestClient.get(url)
   end
 
   def self.get_user_data_url(username)
