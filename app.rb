@@ -161,7 +161,7 @@ def get_high_scores(user, repo)
       user_hash[:contributions] = stored_repo.contributions(user_hash[:login])
       contributors_array << user_hash
     end
-    return contributors_array
+    return contributors_array.sort_by { |c| c[:contributions] }.reverse
   rescue
     raise "Sorry, this GitHub repository doesn't seem to exist or is private"
   end
