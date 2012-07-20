@@ -1,10 +1,8 @@
 class BaseModel
-  API_VERSION = 'v2'
-  BASE_URL = 'http://github.com/api/' + API_VERSION + '/json/'
+  BASE_URL = 'https://api.github.com/'
 
-  USER_BASE_URL = BASE_URL + 'user/show/'
-  REPO_BASE_URL = BASE_URL + 'repos/show/'
-  COMMITS_BASE_URL = BASE_URL + 'commits/list/'
+  USER_BASE_URL = BASE_URL + 'users/'
+  REPO_BASE_URL = BASE_URL + 'repos/'
 end
 
 class DateTime

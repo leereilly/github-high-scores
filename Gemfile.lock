@@ -1,10 +1,5 @@
 GEM
-  remote: http://rubygems.org/
-  remote: http://rubygems.org/
-  remote: http://gems.rubyforge.org/
-  remote: http://gems.rubyonrails.org/
-  remote: http://gems.github.com/
-  remote: http://gemcutter.org/
+  remote: https://rubygems.org/
   specs:
     addressable (2.2.5)
     bcrypt-ruby (2.1.4)

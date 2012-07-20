@@ -1,8 +1,6 @@
 require 'rubygems'
 require 'data_mapper'
-require 'net/http'
 require 'json'
-require 'uri'
 require 'uuidtools'
 
 class Repo < BaseModel
@@ -41,9 +39,8 @@ class Repo < BaseModel
 
     repo_data_response = get_json_response(repo_data_url)
     repo_data = JSON.parse(repo_data_response.body)
-    repo_data = repo_data['repository']
 
-    repo.owner = repo_data['owner']
+    repo.owner = repo_data['owner']['login']
     repo.name = repo_data['name']
     repo.url = repo_data['url']
     repo.homepage = repo_data['homepage']
@@ -64,11 +61,17 @@ class Repo < BaseModel
   end
 
   def self.get_json_response(url)
-    Net::HTTP.get_response(URI.parse(url))
+    RestClient.get(url)
   end
 
   def self.get_repo_data_url(username, repo)
     return REPO_BASE_URL + username + '/' + repo
+  end
+
+  def contributions(contributor)
+    uri = "http://octocoder.heroku.com/#{owner}/#{name}/#{contributor}"
+    response = RestClient.get(uri)
+    JSON.parse(response)['count']
   end
 end
 
