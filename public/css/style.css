@@ -105,3 +105,9 @@ h3 {
   /**text-align: center;*/
 	color: lightblue;
 }
+
+.permalink {
+  font-size: small;
+  color: darkgray
+}
+

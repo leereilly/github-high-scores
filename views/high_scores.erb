@@ -9,12 +9,13 @@
 		<th class="small">User</th>
 	</tr>
 	<% @high_scores.each do |high_score| %>
-	<tr>
+	<tr <% unless high_score[:login].nil? %>id="person-<%= high_score[:login] %>" <% end %>>
 		<div itemscope itemtype="http://data-vocabulary.org/Person">
 		<td class="small"><%= high_score[:contributions]*100 %></td>
 		<% unless high_score[:login].nil? %>
 		<td class="small"><img itemprop="photo" src="http://0.gravatar.com/avatar/<%= high_score[:gravatar_id] %>?s=10&d=identicon" width="50" height="50"></td>
 		<td class="small"><span itemprop="nickname"><a href="/<%= high_score[:login] %>"><%= high_score[:login] %></a></span></td>
+		<td class="small"><a class="permalink" href="#person-<%= high_score[:login] %>">&para;</a></td>
 		<% else %>
 		<td class="small"><img itemprop="photo" src="http://0.gravatar.com/avatar/dummy?s=10&d=identicon" width="50" height="50"></td>
 		<td class="small"><span itemprop="name"><%= high_score[:name] %></span></td>
