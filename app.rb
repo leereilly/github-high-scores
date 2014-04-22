@@ -2,30 +2,7 @@ $:.unshift File.join(File.dirname(__FILE__),'lib')
 
 require 'rubygems'
 require 'sinatra'
-require 'json'
-require 'erb'
-require 'data_mapper'
-require 'dm-migrations'
-
-DataMapper::Logger.new($stdout, :debug)
-dburl = case ENV['db_use']
-        when 'mysql' then ("mysql://#{ENV['db_user']}:#{ENV['db_pass']}@"+
-                           "#{ENV['db_host']}/#{ENV['db_data']}")
-        when 'sqlite' then "sqlite3://#{ENV['db_path']}"
-        when 'sqlite_default' then "sqlite3://#{Dir.pwd}/db/my.db"
-        else
-          puts "REQUIRED: please provide a value for db_use -- see README.md"
-          exit
-        end
-DataMapper.setup(:default, dburl)
-#DataMapper.auto_upgrade!
-
-require 'helpers'
-require 'User'
-require 'Repo'
-
-disable :show_exceptions
-set :environment, :production
+require 'octokit'
 
 error do
   @title = "404"
@@ -43,7 +20,7 @@ get '/' do
       @repo = get_repo_from_github_url(@github_url)
       @high_scores = get_high_scores(@user, @repo)
       @display_small_search = true
-      redirect "/#{@user}/#{@repo}/high_scores/"
+      redirect "/#{@user}/#{@repo}"
     else
       @title = 'High Scores'
       @text = 'Please enter a Github repository URL'
@@ -56,12 +33,6 @@ get '/' do
     @display_small_search = false
     erb :not_found
   end
-end
-
-get '/recent_searches/?' do
-   @repos = Repo.all(:limit => 5, :order => [ :updated_at.desc ])
-   @display_small_search = true
-   erb :recent_searches
 end
 
 get '/credits/?' do
@@ -79,16 +50,12 @@ get '/about/?' do
 end
 
 get '/:user/:repo/?' do
-  @user = User::create_from_username(params[:user])
-  @repo = Repo::create_from_username_and_repo(params[:user], params[:repo])
+  @title = "New"
+  @user = params[:user]
+  @repo = params[:repo]
+  @high_scores = get_high_scores(@user, @repo)
   @display_small_search = true
-  erb :repo
-end
-
-get '/:user/?' do
-  @user = User::create_from_username(params[:user])
-  @display_small_search = true
-  erb :user
+  erb :high_scores
 end
 
 not_found do
@@ -137,37 +104,13 @@ end
 
 def get_high_scores(user, repo)
   begin
-    # Kludge - three API calls
-    stored_user = User::create_from_username(user)
-    puts "Storing user: #{stored_user}"
-    stored_repo = Repo::create_from_username_and_repo(user, repo)
-    puts "Storing repo: #{stored_repo}"
-
-    contributors_url = "https://api.github.com/repos/#{user}/#{repo}/collaborators"
-
-    contributors_feed = RestClient.get(contributors_url)
-    contributors = contributors_feed.body
-    repository_contributors = JSON.parse(contributors)
-    contributors_array = Array.new
-    repository_contributors.each do |repository_contributor|
-
-      user_hash = Hash.new
-      user_hash[:login] = repository_contributor['login']
-      user_hash[:name] = repository_contributor['name']
-      user_hash[:email] = repository_contributor['email']
-      user_hash[:gravatar_id] = repository_contributor['gravatar_id']
-      user_hash[:location] = repository_contributor['location']
-
-      user_hash[:contributions] = stored_repo.contributions(user_hash[:login])
-      contributors_array << user_hash
-    end
-    return contributors_array.sort_by { |c| c[:contributions] }.reverse
-  rescue
-    raise "Sorry, this GitHub repository doesn't seem to exist or is private"
+    contributors = Octokit.contributors "#{user}/#{repo}"
+  rescue Exception => e
+    raise e.message
   end
 end
 
-
+# support legacy links
 get '/:user/:repo/high_scores/?' do
   @title = "New"
   @user = params[:user]
@@ -176,4 +119,3 @@ get '/:user/:repo/high_scores/?' do
   @display_small_search = true
   erb :high_scores
 end
-

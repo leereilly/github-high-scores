@@ -15,7 +15,7 @@
 		<% unless high_score[:login].nil? %>
 		<td class="small"><img itemprop="photo" src="http://0.gravatar.com/avatar/<%= high_score[:gravatar_id] %>?s=10&d=identicon" width="50" height="50"></td>
 		<td class="small"><span itemprop="nickname"><a href="/<%= high_score[:login] %>"><%= high_score[:login] %></a></span></td>
-		<td class="small"><a class="permalink" href="#person-<%= high_score[:login] %>">&para;</a></td>
+		<td class="small"><a class="permalink" href="#person-<%= high_score[:login] %>"></a></td>
 		<% else %>
 		<td class="small"><img itemprop="photo" src="http://0.gravatar.com/avatar/dummy?s=10&d=identicon" width="50" height="50"></td>
 		<td class="small"><span itemprop="name"><%= high_score[:name] %></span></td>
@@ -23,8 +23,7 @@
 	</tr>
 	<% end %>
 </table>
-<p class="small">Permalink: <a href="http://github-high-scores.heroku.com/<%= @user %>/<%= @repo %>/high_scores">http://github-high-scores.heroku.com/<%= @user %>/<%= @repo %>/high_scores</a></p>
+<p class="small">Permalink: <a href="http://github-high-scores.heroku.com/<%= @user %>/<%= @repo %>">http://github-high-scores.heroku.com/<%= @user %>/<%= @repo %></a></p>
 <p class="small"><a href="http://twitter.com/share?url=http%3A%2F%2Fdev.twitter.com%2Fpages%2Ftweet-button" target="_blank">TWEET THIS!</a></p>
 
 <%= erb :footer %>
-
