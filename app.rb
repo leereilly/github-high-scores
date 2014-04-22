@@ -2,7 +2,7 @@ $:.unshift File.join(File.dirname(__FILE__),'lib')
 
 require 'rubygems'
 require 'sinatra'
-require 'json'
+require 'octokit'
 
 error do
   @title = "404"
@@ -16,8 +16,17 @@ get '/' do
     if params[:github_url]
       @title = 'High Scores'
       @github_url = sanitize_input params[:github_url]
+
+      puts "Got URL: #{@github_url}"
+
       @user = get_user_from_github_url(@github_url)
+
+      puts "Got user: #{@user}"
+
       @repo = get_repo_from_github_url(@github_url)
+
+      puts "Got repo: #{@repo}"
+
       @high_scores = get_high_scores(@user, @repo)
       @display_small_search = true
       redirect "/#{@user}/#{@repo}/high_scores/"
@@ -56,7 +65,6 @@ get '/about/?' do
 end
 
 get '/:user/:repo/?' do
-  @user = User::create_from_username(params[:user])
   @repo = Repo::create_from_username_and_repo(params[:user], params[:repo])
   @display_small_search = true
   erb :repo
@@ -114,33 +122,9 @@ end
 
 def get_high_scores(user, repo)
   begin
-    # Kludge - three API calls
-    stored_user = User::create_from_username(user)
-    puts "Storing user: #{stored_user}"
-    stored_repo = Repo::create_from_username_and_repo(user, repo)
-    puts "Storing repo: #{stored_repo}"
-
-    contributors_url = "https://api.github.com/repos/#{user}/#{repo}/collaborators"
-
-    contributors_feed = RestClient.get(contributors_url)
-    contributors = contributors_feed.body
-    repository_contributors = JSON.parse(contributors)
-    contributors_array = Array.new
-    repository_contributors.each do |repository_contributor|
-
-      user_hash = Hash.new
-      user_hash[:login] = repository_contributor['login']
-      user_hash[:name] = repository_contributor['name']
-      user_hash[:email] = repository_contributor['email']
-      user_hash[:gravatar_id] = repository_contributor['gravatar_id']
-      user_hash[:location] = repository_contributor['location']
-
-      user_hash[:contributions] = stored_repo.contributions(user_hash[:login])
-      contributors_array << user_hash
-    end
-    return contributors_array.sort_by { |c| c[:contributions] }.reverse
-  rescue
-    raise "Sorry, this GitHub repository doesn't seem to exist or is private"
+    contributors = Octokit.contributors "#{user}/#{repo}"
+  rescue Exception => e
+    raise e.message
   end
 end
 
