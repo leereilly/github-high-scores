@@ -59,15 +59,12 @@ get '/about/?' do
 end
 
 get '/:user/:repo/?' do
-  @repo = Repo::create_from_username_and_repo(params[:user], params[:repo])
+  @title = "New"
+  @user = params[:user]
+  @repo = params[:repo]
+  @high_scores = get_high_scores(@user, @repo)
   @display_small_search = true
-  erb :repo
-end
-
-get '/:user/?' do
-  @user = User::create_from_username(params[:user])
-  @display_small_search = true
-  erb :user
+  erb :high_scores
 end
 
 not_found do
