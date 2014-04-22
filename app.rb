@@ -16,20 +16,11 @@ get '/' do
     if params[:github_url]
       @title = 'High Scores'
       @github_url = sanitize_input params[:github_url]
-
-      puts "Got URL: #{@github_url}"
-
       @user = get_user_from_github_url(@github_url)
-
-      puts "Got user: #{@user}"
-
       @repo = get_repo_from_github_url(@github_url)
-
-      puts "Got repo: #{@repo}"
-
       @high_scores = get_high_scores(@user, @repo)
       @display_small_search = true
-      redirect "/#{@user}/#{@repo}/high_scores/"
+      redirect "/#{@user}/#{@repo}"
     else
       @title = 'High Scores'
       @text = 'Please enter a Github repository URL'
@@ -119,7 +110,7 @@ def get_high_scores(user, repo)
   end
 end
 
-
+# support legacy links
 get '/:user/:repo/high_scores/?' do
   @title = "New"
   @user = params[:user]
