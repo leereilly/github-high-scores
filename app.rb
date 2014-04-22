@@ -4,26 +4,6 @@ require 'rubygems'
 require 'sinatra'
 require 'json'
 
-DataMapper::Logger.new($stdout, :debug)
-dburl = case ENV['db_use']
-        when 'mysql' then ("mysql://#{ENV['db_user']}:#{ENV['db_pass']}@"+
-                           "#{ENV['db_host']}/#{ENV['db_data']}")
-        when 'sqlite' then "sqlite3://#{ENV['db_path']}"
-        when 'sqlite_default' then "sqlite3://#{Dir.pwd}/db/my.db"
-        else
-          puts "REQUIRED: please provide a value for db_use -- see README.md"
-          exit
-        end
-DataMapper.setup(:default, dburl)
-#DataMapper.auto_upgrade!
-
-require 'helpers'
-require 'User'
-require 'Repo'
-
-disable :show_exceptions
-set :environment, :production
-
 error do
   @title = "404"
   @text = "Sorry, but this cat is in another castle!"
