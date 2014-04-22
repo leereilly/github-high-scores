@@ -44,12 +44,6 @@ get '/' do
   end
 end
 
-get '/recent_searches/?' do
-   @repos = Repo.all(:limit => 5, :order => [ :updated_at.desc ])
-   @display_small_search = true
-   erb :recent_searches
-end
-
 get '/credits/?' do
   erb :credits
 end
