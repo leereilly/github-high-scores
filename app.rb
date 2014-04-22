@@ -3,9 +3,6 @@ $:.unshift File.join(File.dirname(__FILE__),'lib')
 require 'rubygems'
 require 'sinatra'
 require 'json'
-require 'erb'
-require 'data_mapper'
-require 'dm-migrations'
 
 DataMapper::Logger.new($stdout, :debug)
 dburl = case ENV['db_use']
@@ -176,4 +173,3 @@ get '/:user/:repo/high_scores/?' do
   @display_small_search = true
   erb :high_scores
 end
-
