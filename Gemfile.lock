@@ -2,14 +2,32 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.6)
+    excon (0.33.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    heroku (3.6.0)
+      heroku-api (~> 0.3.17)
+      launchy (>= 0.3.2)
+      netrc (~> 0.7.7)
+      rest-client (~> 1.6.1)
+      rubyzip
+    heroku-api (0.3.18)
+      excon (~> 0.27)
+      multi_json (~> 1.8)
+    launchy (2.4.2)
+      addressable (~> 2.3)
+    mime-types (2.2)
+    multi_json (1.9.2)
     multipart-post (2.0.0)
+    netrc (0.7.7)
     octokit (3.1.0)
       sawyer (~> 0.5.3)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    rubyzip (1.1.3)
     sawyer (0.5.4)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
@@ -23,5 +41,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  heroku (~> 3.6.0)
   octokit (~> 3.1.0)
   sinatra (~> 1.4.5)
