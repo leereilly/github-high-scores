@@ -23,6 +23,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.6.2)
   octokit (~> 3.1.0)
   sinatra (~> 1.4.5)
