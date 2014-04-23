@@ -41,6 +41,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler (~> 1.6.2)
   heroku (~> 3.6.0)
   octokit (~> 3.1.0)
   sinatra (~> 1.4.5)
