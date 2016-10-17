@@ -43,11 +43,6 @@ app.get('/', function(req, res) {
   res.render('pages/index');
 });
 
-app.get('/credits/?', function(req, res){
-  // render the credits page
-  res.render('pages/credits');
-});
-
 app.get('/:user/:repo/?', function(req, res){
   // get the results
   var scores = get_high_scores(req.params.user, req.params.repo)
@@ -65,6 +60,22 @@ app.get('/:user/:repo/?', function(req, res){
   });
 });
 
+
+// Credits, help, about pages
+app.get('/credits/?', function(req, res){
+  // render the credits page
+  res.render('pages/credits');
+});
+
+app.get('/help/?', function(req, res){
+  // render the help page
+  res.render('pages/help');
+});
+
+app.get('/about/?', function(req, res){
+  // render the about page
+  res.render('pages/about');
+});
 
 // Error handers
 app.use(function(req, res, next) {

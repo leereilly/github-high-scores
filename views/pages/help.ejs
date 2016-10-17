@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<% include ../partials/header.ejs %>
+</head>
+<body>
+
+<div class="fl-right">
+  <form action='/' method="GET">
+    <input type="text" name="repo" class="small" />
+    <input type="submit" value="1 UP" class="small" />
+  </form>
+</div>
+
+<h1 class="left"><a href="/">GitHub High Scores</a></h1>
+
+<div class="wrapper">
+
+<h2>Help</h2>
+
+<h3>What on Earth is a Git? A GitHub? You did what with your what now?</h3>
+<p class="align-left">Please check out the '<a href='/about'>about</a>' section for a general overview.
+  
+<h3>How do I view the high scores for my GitHub repository?</h3>
+<p class="align-left">Simply enter the URL of your GitHub repository into the search box. Currently we support the following formats...</p>
+<ul>
+  <li>http://www.github.com/mojombo/octobeer</li>
+  <li>https://www.github.com/mojombo/octobeer</li>
+  <li>git@github.com:mojombo/octobeer</li>
+  <li>git://github.com/mojombo/octobeer</li>
+  <li>github.com/mojombo/octobeer</li>
+  <li>www.github.com/mojombo/octobeer</li>
+  <li>mojombo/octobeer</li>
+</ul>
+
+<h3>It's Not Working!</h3>
+<p class="align-left">Please create an issue in the GitHub repository</p>
+
+<h3>I'd Like To Contribute</h3>
+<p class="align-left">You know what to do! #fork #pullRequest</p>
+
+<h3>This looks like a web site from the 80s! Running it through the Geocitiesizer is actually an improvement!!!</h3>
+<p class="align-left">Cheers! :BEER:</p>
+
+</div>
+
+<% include ../partials/footer.ejs %>
+
+</body>
+</html>
