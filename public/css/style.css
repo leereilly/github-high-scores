@@ -1,28 +1,28 @@
 @font-face {
-	font-family: "ArcadeClassic";
-	src: url("../font/ArcadeClassic.otf") format("opentype");
+  font-family: "ArcadeClassic";
+  src: url("../font/ArcadeClassic.otf") format("opentype");
 }
 
 body {
-	font-family: "ArcadeClassic";
- 	letter-spacing: 2px;
- 	word-spacing: 0.5em;
-	color: white;
-	background: #000000 top center no-repeat; 	
+  font-family: "ArcadeClassic";
+  letter-spacing: 2px;
+  word-spacing: 0.5em;
+  color: white;
+  background: #000000 top center no-repeat;   
 }
 
 #wrapper {
-	margin: 0 auto;
-	width: 700px;
+  margin: 0 auto;
+  width: 700px;
 }
 
 #content {
-	width: 100%;
+  width: 100%;
 }
 
 a {
-	text-decoration: none; 
-	color: white;	
+  text-decoration: none; 
+  color: white; 
 }
 
 td {
@@ -31,19 +31,19 @@ td {
 
 th {
     font-size: 40px;
-		font-weight: bold;
+    font-weight: bold;
 }
 
 td.small {
     font-size: 20px;
-		padding:10px; 
+    padding:10px; 
 }
 
 th.small {
     font-size: 20px;
-		font-weight: bold;
-		padding:10px; 
-		color: yellow;
+    font-weight: bold;
+    padding:10px; 
+    color: yellow;
 }
 
 td.small:first-child {
@@ -57,25 +57,25 @@ table {
 }
 
 input {
-	color: #FFFFFF;
-	font-family: ArcadeClassic;
-	font-weight: bold;
-	font-size: 24px;
-	background-color: #72A4D2;
+  color: #FFFFFF;
+  font-family: ArcadeClassic;
+  font-weight: bold;
+  font-size: 24px;
+  background-color: #72A4D2;
 }
 
 input.small {
-	font-size: 12px;
+  font-size: 12px;
 }
 
 #header_search {
-	text-align: right;
-	float:right;
+  text-align: right;
+  float:right;
 }
 
 .header_search {
-	text-align: right;
-	float: right;
+  text-align: right;
+  float: right;
 }
 
 p.center {
@@ -84,26 +84,26 @@ p.center {
 
 p.copyright {
    text-align: center;
-	 font-size: 12px;
+   font-size: 12px;
 }
 
-p.small {	 
-	text-align: center;
-	font-size: 11px;
+p.small {  
+  text-align: center;
+  font-size: 11px;
 }
 
 h1 {
-	text-align: lightblue;
+  text-align: lightblue;
 }
 
 h2 {
-	text-align: center;
-	color: lightblue;	
+  text-align: center;
+  color: lightblue; 
 }
 
 h3 {
   /**text-align: center;*/
-	color: lightblue;
+  color: lightblue;
 }
 
 .permalink {

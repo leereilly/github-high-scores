@@ -1,0 +1,8 @@
+{
+  "name": "GitHub High Scores",
+  "description": "8-bit, 80's-tastic arcadey GitHub contributions viewing environment.",
+  "repository": "https://github.com/leereilly/github-high-scores",
+  "website": "http://gitscore.herokuapp.com",
+  "logo": "http://gitscore.herokuapp.com/img/octocat.png",
+  "keywords": ["node", "express", "ejs", "github", "high scores"]
+}
