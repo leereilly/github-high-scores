@@ -43,6 +43,11 @@ app.get('/', function(req, res) {
   res.render('pages/index');
 });
 
+app.get('/credits/?', function(req, res){
+  // render the credits page
+  res.render('pages/credits');
+});
+
 app.get('/:user/:repo/?', function(req, res){
   // get the results
   var scores = get_high_scores(req.params.user, req.params.repo)
