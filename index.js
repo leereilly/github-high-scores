@@ -60,6 +60,11 @@ app.get('/:user/:repo/?', function(req, res){
   });
 });
 
+app.get('/:user/:repo/high_scores/?', function(req, res){
+  // support for legacy links
+  res.redirect('/' + req.params.user + '/' + req.params.repo);
+});
+
 
 // Credits, help, about pages
 app.get('/credits/?', function(req, res){
