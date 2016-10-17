@@ -1,0 +1,29 @@
+{
+  "name": "github-high-scores",
+  "version": "2.0.0",
+  "description": "8-bit, 80's-tastic arcadey GitHub contributions viewing environment.",
+  "author": "Lee Reilly",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ejs": "^2.4.1",
+    "express": "^4.13.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heroku/node-js-getting-started"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "ejs",
+    "github",
+    "high scores"
+  ],
+  "license": "ISC"
+}
