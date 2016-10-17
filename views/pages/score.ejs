@@ -29,7 +29,7 @@
           <%= user.score %>
         </td>
         <td>
-          <img itemprop="photo" src="http://0.gravatar.com/avatar/?s=10&d=identicon" width="50" height="50">
+          <img itemprop="photo" src="<%= user.avatar %>" width="50" height="50">
         </td>
         <td>
           <span itemprop="nickname"><a href="/<%= user.username %>"><%= user.username %></a></span>

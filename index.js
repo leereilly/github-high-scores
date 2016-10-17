@@ -109,7 +109,8 @@ function get_high_scores(user, repo) {
         // add current user to the results array
         return {
           username : user.login,
-          score    : user.contributions * 10
+          score    : user.contributions * 10,
+          avatar   : user.avatar_url
         };
         
       })).then( function(results) {
