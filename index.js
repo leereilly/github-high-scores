@@ -107,14 +107,14 @@ function get_high_scores(user, repo) {
       // empty array to contain results
       var results = [];
 
-      // score = contributions * 10
+      // score = contributions * 100
       // iterate through each user
       Promise.all( res.map( function(user) {
 
         // add current user to the results array
         return {
           username : user.login,
-          score    : user.contributions * 10,
+          score    : user.contributions * 100,
           avatar   : user.avatar_url
         };
         
