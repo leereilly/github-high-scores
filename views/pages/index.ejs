@@ -5,7 +5,21 @@
 </head>
 <body>
 
-<p>Hello World!</p>
+<h1><a href="/">GitHub High Scores</a></h1>
+
+<div class="wrapper">
+
+  <h2>High Scores</h2>
+  <p>Please enter a Github repository URL</p>
+
+  <form action='/' method="GET">
+    <input type="text" size="24" name="repo" />
+    <input type="submit" value="1 UP" />
+  </form>
+
+</div>
+
+<% include ../partials/footer.ejs %>
 
 </body>
 </html>
