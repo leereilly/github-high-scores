@@ -54,10 +54,22 @@ app.get('/:user/:repo/?', function(req, res){
   }, function(err) {
     
     // handle error
-    console.log(err);
+    console.error(err);
     res.render('pages/notfound', { title: '404', error: 'Sorry, but this cat is in another castle!' });
   
   });
+});
+
+
+// Error handers
+app.use(function(req, res, next) {
+  console.error('404');
+  res.status(404).render('pages/notfound', { title: '404', error: 'Sorry, but this cat is in another castle!' });
+});
+
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).render('pages/notfound', { title: 'Error 500', error: 'Sorry, something broke!' });
 });
 
 
