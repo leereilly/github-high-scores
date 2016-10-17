@@ -11,13 +11,30 @@ body {
   background: #000000 top center no-repeat;   
 }
 
-#wrapper {
+.wrapper {
   margin: 0 auto;
   width: 700px;
 }
 
-#content {
-  width: 100%;
+h1 {
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+  color: lightblue; 
+}
+
+p {
+  text-align: center;
+}
+
+p.small {
+  font-size: 11px;
+}
+
+p.copyright {
+  font-size: 12px;
 }
 
 a {
@@ -25,35 +42,8 @@ a {
   color: white; 
 }
 
-td {
-    font-size: 40px;
-}
-
-th {
-    font-size: 40px;
-    font-weight: bold;
-}
-
-td.small {
-    font-size: 20px;
-    padding:10px; 
-}
-
-th.small {
-    font-size: 20px;
-    font-weight: bold;
-    padding:10px; 
-    color: yellow;
-}
-
-td.small:first-child {
-    text-align: right;
-}
-
-table {
-    vertical-align: center;
-    margin-left: auto;
-    margin-right: auto;
+form {
+  text-align: center;
 }
 
 input {
@@ -64,50 +54,37 @@ input {
   background-color: #72A4D2;
 }
 
-input.small {
+/* Results page */
+
+table {
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  white-space: normal;
+}
+
+th {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px; 
+  color: yellow;
+}
+
+td {
+  font-size: 20px;
+  padding: 10px; 
+}
+
+td:first-child {
+  text-align: right;
+}
+
+.small {
   font-size: 12px;
 }
-
-#header_search {
-  text-align: right;
-  float:right;
-}
-
-.header_search {
-  text-align: right;
+.fl-right {
   float: right;
 }
-
-p.center {
-   text-align: center;
+.align-left {
+  text-align: left;
 }
-
-p.copyright {
-   text-align: center;
-   font-size: 12px;
-}
-
-p.small {  
-  text-align: center;
-  font-size: 11px;
-}
-
-h1 {
-  text-align: lightblue;
-}
-
-h2 {
-  text-align: center;
-  color: lightblue; 
-}
-
-h3 {
-  /**text-align: center;*/
-  color: lightblue;
-}
-
-.permalink {
-  font-size: small;
-  color: darkgray
-}
-
