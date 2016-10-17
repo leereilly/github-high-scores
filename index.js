@@ -49,7 +49,7 @@ app.get('/:user/:repo/?', function(req, res){
   .then(function(results) {
 
     // render the results
-    res.render('pages/score', { scores: results });
+    res.render('pages/score', { scores: results, owner: req.params.user, repo: req.params.repo });
 
   }, function(err) {
     
