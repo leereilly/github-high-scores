@@ -20,27 +20,33 @@ app.listen(app.get('port'), function() {
 
 app.get('/', function(req, res) {
   // check whether the repo GET parameter is a valid URL
-  var url      = typeof(req.query.repo) === 'undefined' ? '' : req.query.repo,
-      isURL    = validator.isURL(url, {
-        protocols: ['http','https'],
-        allow_underscores: true
-      });
+  var url = sanitize_url( req.query.repo )
+  .then(function(url) {
 
-  if(isURL) {
-    // if it's a valid url, redirect to /user/repo
-    var user = get_user_from_github_url(url),
-        repo = get_repo_from_github_url(url);
+    var isURL    = validator.isURL(url, {
+          protocols: ['http','https'],
+          allow_underscores: true
+        });
 
-    res.redirect(user + '/' + repo);
-    return;
+    if(isURL) {
+      // if it's a valid url, redirect to /user/repo
+      var user = get_user_from_github_url(url),
+          repo = get_repo_from_github_url(url);
 
-  } else if(url !== '') {
-    // if the user entered an invalid url, render the home page with an error
-    res.render('pages/notfound', { title: '404', error: 'Sorry, but this cat is in another castle!' });
-  }
+      res.redirect(user + '/' + repo);
+      return;
 
-  // if the user hasn't entered a url, just render the home page
-  res.render('pages/index');
+    } else if(url !== '') {
+      // if the user entered an invalid url, render the home page with an error
+      res.render('pages/notfound', { title: '404', error: 'Sorry, but this cat is in another castle!' });
+      return;
+    }
+
+  }, function(err) {
+
+    // if the user hasn't entered a url, just render the home page
+    res.render('pages/index');
+  });
 });
 
 app.get('/:user/:repo/?', function(req, res){
@@ -142,5 +148,45 @@ function get_high_scores(user, repo) {
 
     });
 
+  });
+};
+
+function sanitize_url(unsanitized_url) {
+  return new Promise(function(resolve, reject) {
+
+    if( typeof(unsanitized_url) === 'undefined') {
+      reject('No query');
+      return;
+    }
+
+    var url = unsanitized_url.toLowerCase();
+
+    // Check the start of the URL
+
+    if (url.substring(0, 10) === 'github.com') {
+      // Special rules for Github URLs starting with 'github.com'
+      url = 'https://www.github.com' + url.substring(10);
+
+    } else if (url.substring(0, 14) === 'www.github.com') {
+      // Special rules for Github URLs starting with 'www.github.com'
+      url = 'https://www.github.com' + url.substring(14);
+    }
+
+    // Check the end of the URL
+    if (url.substring(url.length - 4) === '.git') {
+      // Special rules for Github URLs ending in 'git'
+      url = url.substring(0, url.length - 4);
+    }
+
+    url = url.replace("http://", "https://").replace("git@github.com:", "https://www.github.com/").replace("git://", "https://www.");
+
+    // Check if someone just passes in user/repo e.g. leereilly/leereilly.net
+    // Trim leading/trailing slash
+    tokens = url.replace(/^\/|\/$/g, '').split('/');
+    if (tokens.length === 2) {
+      url = "https://www.github.com/" + tokens[0] + "/" + tokens[1];
+    }
+
+    resolve(url);
   });
 };
