@@ -46,6 +46,10 @@ a {
   color: white; 
 }
 
+img {
+  margin-bottom: 1rem;
+}
+
 form {
   text-align: center;
 }
@@ -91,4 +95,7 @@ td:first-child {
 }
 .align-left {
   text-align: left;
+}
+.align-center {
+  text-align: center;
 }
