@@ -5,9 +5,18 @@
 </head>
 <body>
 
+<h1 class="left"><a href="/">GitHub High Scores</a></h1>
+
 <h2><%= title %></h2>
 <p><%= error %></p>
-<img src="/img/octocat.png">
+
+<div class="align-center">
+	<img src="/img/octocat.png">
+</div>
+
+<% include ../partials/search.ejs %>
+
+<% include ../partials/footer.ejs %>
 
 </body>
 </html>
