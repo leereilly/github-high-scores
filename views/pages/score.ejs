@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<% include ../partials/header.ejs %>
+</head>
+<body>
+
+<% scores.map(function(user) { %>
+
+<p><%= user.username %> = <%= user.score %></p>
+
+<% }); %>
+
+</body>
+</html>

@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "ejs": "^2.4.1",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "github": "^5.2.2",
+    "validator": "^6.1.0"
   },
   "repository": {
     "type": "git",
