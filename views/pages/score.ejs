@@ -5,12 +5,14 @@
 </head>
 <body>
 
-<h1 class="left"><a href="/">GitHub High Scores</a></h1>
+<div class="right">
+  <form action='/' method="GET">
+    <input type="text" name="repo" class="small" />
+    <input type="submit" value="1 UP" class="small" />
+  </form>
+</div>
 
-<form action='/' method="GET" class="small right">
-	<input type="text" size="24" name="repo" />
-	<input type="submit" value="1 UP" />
-</form>
+<h1 class="left"><a href="/">GitHub High Scores</a></h1>
 
 <div class="wrapper">
 
@@ -25,9 +27,7 @@
   <% scores.map(function(user) { %>
     <tr id="person-<%= user.username %>">
       <div itemscope itemtype="http://data-vocabulary.org/Person">
-        <td>
-          <%= user.score %>
-        </td>
+        <td><%= user.score %></td>
         <td>
           <img itemprop="photo" src="<%= user.avatar %>" width="50" height="50">
         </td>
