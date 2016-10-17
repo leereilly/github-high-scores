@@ -5,11 +5,45 @@
 </head>
 <body>
 
-<% scores.map(function(user) { %>
+<h1 class="left"><a href="/">GitHub High Scores</a></h1>
 
-<p><%= user.username %> = <%= user.score %></p>
+<form action='/' method="GET" class="small right">
+	<input type="text" size="24" name="repo" />
+	<input type="submit" value="1 UP" />
+</form>
 
-<% }); %>
+<div class="wrapper">
+
+  <h2><a href="/<%= owner %>"><%= owner %></a> &gt;&gt; <a href="/<%= owner %>/github-high-scores">github-high-scores</a> &gt;&gt; <a href="/<%= owner %>/github-high-scores/high_scores">High Scores</a></h2>
+
+  <table>
+    <tr>
+      <th>Score</th>
+      <th>Avatar</th>
+      <th>User</th>
+    </tr>
+  <% scores.map(function(user) { %>
+    <tr id="person-<%= user.username %>">
+      <div itemscope itemtype="http://data-vocabulary.org/Person">
+        <td>
+          <%= user.score %>
+        </td>
+        <td>
+          <img itemprop="photo" src="http://0.gravatar.com/avatar/?s=10&d=identicon" width="50" height="50">
+        </td>
+        <td>
+          <span itemprop="nickname"><a href="/<%= user.username %>"><%= user.username %></a></span>
+        </td>
+        <td>
+          <a class="permalink" href="#person-<%= user.username %>"></a>
+        </td>
+    </tr>
+  <% }); %>
+  </table>
+
+</div>
+
+<% include ../partials/footer.ejs %>
 
 </body>
 </html>
