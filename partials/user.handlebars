@@ -1,13 +1,24 @@
-    <tr id="person-{{ username }}">
+<table>
+  <tr>
+    <th>Score</th>
+    <th>Avatar</th>
+    <th>User</th>
+  </tr>
+
+  {{#each scores}}
+    <tr id="person-{{ this.username }}">
       <div itemscope itemtype="http://data-vocabulary.org/Person">
-        <td>{{ score }}</td>
+        <td>{{ this.score }}</td>
         <td>
-          <img itemprop="photo" src="{{ avatar }}" width="50" height="50">
+          <img itemprop="photo" src="{{ this.avatar }}" width="50" height="50">
         </td>
         <td>
-          <span itemprop="nickname"><a href="/{{ username }}">{{ username }}</a></span>
+          <span itemprop="nickname"><a href="/{{ this.username }}">{{ this.username }}</a></span>
         </td>
         <td>
-          <a class="permalink" href="#person-{{ username }}"></a>
+          <a class="permalink" href="#person-{{ this.username }}"></a>
         </td>
     </tr>
+  {{/each}}
+
+</table>

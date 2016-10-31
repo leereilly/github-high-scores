@@ -1,20 +1,26 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
-templates['user'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+templates['user'] = template({"1":function(container,depth0,helpers,partials,data) {
+    var alias1=container.lambda, alias2=container.escapeExpression;
 
   return "    <tr id=\"person-"
-    + alias4(((helper = (helper = helpers.username || (depth0 != null ? depth0.username : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"username","hash":{},"data":data}) : helper)))
+    + alias2(alias1((depth0 != null ? depth0.username : depth0), depth0))
     + "\">\r\n      <div itemscope itemtype=\"http://data-vocabulary.org/Person\">\r\n        <td>"
-    + alias4(((helper = (helper = helpers.score || (depth0 != null ? depth0.score : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"score","hash":{},"data":data}) : helper)))
+    + alias2(alias1((depth0 != null ? depth0.score : depth0), depth0))
     + "</td>\r\n        <td>\r\n          <img itemprop=\"photo\" src=\""
-    + alias4(((helper = (helper = helpers.avatar || (depth0 != null ? depth0.avatar : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"avatar","hash":{},"data":data}) : helper)))
+    + alias2(alias1((depth0 != null ? depth0.avatar : depth0), depth0))
     + "\" width=\"50\" height=\"50\">\r\n        </td>\r\n        <td>\r\n          <span itemprop=\"nickname\"><a href=\"/"
-    + alias4(((helper = (helper = helpers.username || (depth0 != null ? depth0.username : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"username","hash":{},"data":data}) : helper)))
+    + alias2(alias1((depth0 != null ? depth0.username : depth0), depth0))
     + "\">"
-    + alias4(((helper = (helper = helpers.username || (depth0 != null ? depth0.username : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"username","hash":{},"data":data}) : helper)))
+    + alias2(alias1((depth0 != null ? depth0.username : depth0), depth0))
     + "</a></span>\r\n        </td>\r\n        <td>\r\n          <a class=\"permalink\" href=\"#person-"
-    + alias4(((helper = (helper = helpers.username || (depth0 != null ? depth0.username : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"username","hash":{},"data":data}) : helper)))
+    + alias2(alias1((depth0 != null ? depth0.username : depth0), depth0))
     + "\"></a>\r\n        </td>\r\n    </tr>\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<table>\r\n  <tr>\r\n    <th>Score</th>\r\n    <th>Avatar</th>\r\n    <th>User</th>\r\n  </tr>\r\n\r\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.scores : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "  <tr><td>test</td><td>test</td><td>test</td></tr>\r\n\r\n</table>\r\n";
 },"useData":true});
 })();

@@ -7146,13 +7146,15 @@ if (window.location.href.indexOf('#') > -1) {
 
 } else {
   // Index page
-  var form = "<form action='' id='form'>\n" +
-             "\t<input type='text' name='url' />\n" +
-             "\t<input type='submit'/>\n" +
+  var form = "<h2>High Scores</h2>\n" +
+             "<p>Please enter a Github repository URL</p>\n" +
+             "<form action='' id='form'>\n" +
+             "\t<input type='text' size='24' name='url' />\n" +
+             "\t<input type='submit' value='1 UP'/>\n" +
              "</form>\n";
   
   // Display the form
-  document.write(form);
+  document.getElementsByClassName('wrapper')[0].innerHTML = form;
 
   // Process the form
   document.getElementById('form').onsubmit = function(e) {
@@ -7160,7 +7162,7 @@ if (window.location.href.indexOf('#') > -1) {
     e.preventDefault();
     process_form( document.getElementById('form').url.value );
     return false;
-  }
+  };
 }
 
 function process_form(input) {
@@ -7204,25 +7206,24 @@ function render() {
 
   get_high_scores(user,repo)
   .then(function(scores) {
+    // get the handlebars template
+    var template = Handlebars.templates.user;
 
-    console.log(Handlebars);
-    scores.map(function(user) {
-      var template = Handlebars.templates.user;
-      var context = {username: user.username, score: user.score, avatar: user.avatar}
-      var html    = template(context);
-      document.write(html);
-    });
+    var html = "<h2><a href='/" + user + "'>" + user + "</a> &gt;&gt; <a href='/" + user + "/github-high-scores'>github-high-scores</a> &gt;&gt; <a href='/" + user + "/github-high-scores/high_scores'>High Scores</a></h2>\n" + 
+               template({scores});
 
-  })
+    document.getElementsByClassName('wrapper')[0].innerHTML = html;
+
+  });
 }
 
 function get_user_from_github_url(sanitized_github_url) {
   return sanitized_github_url.split('/')[3];
-};
+}
 
 function get_repo_from_github_url(sanitized_github_url) {
   return sanitized_github_url.split('/')[4];
-};
+}
 
 function get_high_scores(user, repo) {
   return new Promise(function(resolve, reject) {
@@ -7262,7 +7263,7 @@ function get_high_scores(user, repo) {
     });
 
   });
-};
+}
 
 function get_contributors(user, repo) {
   return new Promise(function(resolve, reject) {
@@ -7333,7 +7334,7 @@ function sanitize_url(unsanitized_url) {
 
     resolve(url);
   });
-};
+}
 
 },{"handlebars/runtime":56,"https":7,"validator":57}],38:[function(require,module,exports){
 'use strict';
