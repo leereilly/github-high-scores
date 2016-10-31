@@ -11,19 +11,25 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "ejs": "^2.4.1",
-    "express": "^4.13.3",
-    "github": "^5.2.2",
+    "github": "^5.3.3",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-shell": "^0.5.2",
+    "gulp-uglify": "^2.0.0",
+    "handlebars": "^4.0.5",
+    "http": "0.0.0",
+    "https": "^1.0.0",
     "validator": "^6.1.0"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/leereilly/github-high-scores"
   },
   "keywords": [
     "node",
-    "express",
-    "ejs",
     "github",
     "high scores"
   ],
