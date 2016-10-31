@@ -3,7 +3,15 @@ var validator = require('validator'),
                 require('handlebars/runtime');
 
 if (window.location.href.indexOf('#') > -1) {
-  // Form submitted - render the results
+  // Form submitted
+
+  // Render the mini search bar
+  var search = Handlebars.templates.search(),
+      body   = document.getElementsByTagName("body")[0];
+
+  body.innerHTML = search + "\n\n" + body.innerHTML;
+  
+  // Render the results
   render();
 
 } else {
@@ -69,10 +77,10 @@ function render() {
   get_high_scores(user,repo)
   .then(function(scores) {
     // get the handlebars template
-    var template = Handlebars.templates.user;
+    var template = Handlebars.templates.results;
 
     var html = "<h2><a href='/" + user + "'>" + user + "</a> &gt;&gt; <a href='/" + user + "/github-high-scores'>github-high-scores</a> &gt;&gt; <a href='/" + user + "/github-high-scores/high_scores'>High Scores</a></h2>\n" + 
-               template({scores});
+               template({scores,user,repo});
 
     document.getElementsByClassName('wrapper')[0].innerHTML = html;
 
