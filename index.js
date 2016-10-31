@@ -2,7 +2,7 @@ var validator = require('validator'),
     https     = require('https');
                 require('handlebars/runtime');
 
-if (window.location.href.indexOf('#') > -1) {
+if (window.location.href.indexOf('?') > -1) {
   // Form submitted
 
   // Render the mini search bar
@@ -54,12 +54,11 @@ function process_form(input) {
     });
 
     if(isURL) {
-      // if it's a valid url, redirect to #user/repo
+      // if it's a valid url, redirect to ?user/repo
       var user = get_user_from_github_url(url),
           repo = get_repo_from_github_url(url);
 
-      window.location = window.location.origin + '#' + user + '/' + repo;
-      location.reload();
+      window.location = window.location.origin + '/github-high-scores/?' + user + '/' + repo;
 
     } else if(url !== '') {
       // if the user entered an invalid url, display error
@@ -76,7 +75,7 @@ function process_error() {
   var error = "<h2>404</h2>\n" +
               "<p>Sorry, but this cat is in another castle!</p>\n" +
               "<div class='align-center'>\n" +
-              "\t<img src='/img/octocat.png'>\n" +
+              "\t<img src='/github-high-scores/img/octocat.png'>\n" +
               "</div>";
 
   document.getElementsByClassName('wrapper')[0].innerHTML = error;
@@ -85,7 +84,7 @@ function process_error() {
 }
 
 function render() {
-  var hash = window.location.hash.replace('#','').split('/'),
+  var hash = window.location.search.replace('?','').split('/'),
       user = hash[0],
       repo = hash[1];
 
@@ -94,7 +93,7 @@ function render() {
     // get the handlebars template
     var template = Handlebars.templates.results;
 
-    var html = "<h2><a href='/" + user + "'>" + user + "</a> &gt;&gt; <a href='/" + user + "/github-high-scores'>github-high-scores</a> &gt;&gt; <a href='/" + user + "/github-high-scores/high_scores'>High Scores</a></h2>\n" + 
+    var html = "<h2><a href='/github-high-scores/?" + user + "'>" + user + "</a> &gt;&gt; <a href='/github-high-scores/?" + user + "/" + repo + "'>" + repo + "</a> &gt;&gt; <a href='/github-high-scores/?" + user + "/" + repo + "/high_scores'>High Scores</a></h2>\n" + 
                template({scores,user,repo});
 
     document.getElementsByClassName('wrapper')[0].innerHTML = html;

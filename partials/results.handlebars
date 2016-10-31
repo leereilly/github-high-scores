@@ -13,16 +13,16 @@
           <img itemprop="photo" src="{{ this.avatar }}" width="50" height="50">
         </td>
         <td>
-          <span itemprop="nickname"><a href="/{{ this.username }}">{{ this.username }}</a></span>
+          <span itemprop="nickname"><a href="/github-high-scores/?{{ this.username }}">{{ this.username }}</a></span>
         </td>
         <td>
-          <a class="permalink" href="#person-{{ this.username }}"></a>
+          <a class="permalink" href="?person-{{ this.username }}"></a>
         </td>
     </tr>
   {{/each}}
 
 </table>
 
-<p class="small">Permalink: <a href="http://gitscore.heroku.com/#{{ user }}/{{ repo }}">http://gitscore.heroku.com/#{{ user }}/{{ repo }}</a></p>
+<p class="small">Permalink: <a href="http://gitscore.heroku.com/?{{ user }}/{{ repo }}">http://gitscore.heroku.com/?{{ user }}/{{ repo }}</a></p>
 
-<p class="small"><a href="http://twitter.com/share?text=Check+out+the+high+score+chart+for+my+{{ repo }}+repo+on+GitHub%21&url=http%3A%2F%2Fgitscore.herokuapp.com%2F%23{{ user }}/{{ repo }}" target="_lbank">Tweet this!</a></p>
+<p class="small"><a href="http://twitter.com/share?text=Check+out+the+high+score+chart+for+my+{{ repo }}+repo+on+GitHub%21&url=http%3A%2F%2Fgitscore.herokuapp.com%2F%3F{{ user }}/{{ repo }}" target="_lbank">Tweet this!</a></p>

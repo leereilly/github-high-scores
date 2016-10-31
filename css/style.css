@@ -1,6 +1,6 @@
 @font-face {
   font-family: "ArcadeClassic";
-  src: url("/font/ArcadeClassic.otf") format("opentype");
+  src: url("../font/ArcadeClassic.otf") format("opentype");
 }
 
 body {
