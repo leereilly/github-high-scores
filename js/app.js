@@ -7231,7 +7231,7 @@ function render() {
     // get the handlebars template
     var template = Handlebars.templates.results;
 
-    var html = "<h2><a href='/github-high-scores/?" + user + "'>" + user + "</a> &gt;&gt; <a href='/github-high-scores/?" + user + "/" + repo + "'>" + repo + "</a> &gt;&gt; <a href='/github-high-scores/?" + user + "/" + repo + "/high_scores'>High Scores</a></h2>\n" + 
+    var html = "<h2><a href='https://github.com/" + user + "'>" + user + "</a> &gt;&gt; <a href='/github-high-scores/?" + user + "/" + repo + "'>" + repo + "</a> &gt;&gt; <span class='white'>High Scores</span></h2>\n" + 
                template({scores,user,repo});
 
     document.getElementsByClassName('wrapper')[0].innerHTML = html;
