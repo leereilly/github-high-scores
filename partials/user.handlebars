@@ -1,0 +1,13 @@
+    <tr id="person-{{ username }}">
+      <div itemscope itemtype="http://data-vocabulary.org/Person">
+        <td>{{ score }}</td>
+        <td>
+          <img itemprop="photo" src="{{ avatar }}" width="50" height="50">
+        </td>
+        <td>
+          <span itemprop="nickname"><a href="/{{ username }}">{{ username }}</a></span>
+        </td>
+        <td>
+          <a class="permalink" href="#person-{{ username }}"></a>
+        </td>
+    </tr>
