@@ -16,15 +16,12 @@ if (window.location.href.indexOf('#') > -1) {
 
 } else {
   // Index page
-  var form = "<h2>High Scores</h2>\n" +
-             "<p>Please enter a Github repository URL</p>\n" +
-             "<form action='' id='form'>\n" +
-             "\t<input type='text' size='24' name='url' />\n" +
-             "\t<input type='submit' value='1 UP'/>\n" +
-             "</form>\n";
-  
-  // Display the form
-  document.getElementsByClassName('wrapper')[0].innerHTML = form;
+  var html = "<h2>High Scores</h2>\n" +
+             "<p>Please enter a Github repository URL</p>\n";
+
+  document.getElementsByClassName('wrapper')[0].innerHTML += html; 
+             
+  show_form();
 }
 
 // Process the search form
@@ -35,6 +32,16 @@ document.getElementById('form').onsubmit = function(e) {
   process_form( document.getElementById('form').url.value );
   return false;
 };
+
+function show_form() {
+  var form = "<form action='' id='form'>\n" +
+             "\t<input type='text' size='24' name='url' />\n" +
+             "\t<input type='submit' value='1 UP'/>\n" +
+             "</form>\n";
+  
+  // Display the form
+  document.getElementsByClassName('wrapper')[0].innerHTML += form;
+}
 
 function process_form(input) {
   // check whether the input is a valid URL
@@ -66,8 +73,15 @@ function process_form(input) {
 }
 
 function process_error() {
-  // todo
-  document.write('error');
+  var error = "<h2>404</h2>\n" +
+              "<p>Sorry, but this cat is in another castle!</p>\n" +
+              "<div class='align-center'>\n" +
+              "\t<img src='/img/octocat.png'>\n" +
+              "</div>";
+
+  document.getElementsByClassName('wrapper')[0].innerHTML = error;
+
+  show_form();
 }
 
 function render() {
