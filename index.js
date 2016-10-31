@@ -1,138 +1,128 @@
-var express   = require('express'),
-    validator = require('validator'),
-    githubapi = require('github'),
-    github    = new githubapi(),
-    app       = express();
+var validator = require('validator'),
+    https     = require('https');
+                require('handlebars/runtime');
 
-app.set('port', (process.env.PORT || 5000));
+if (window.location.href.indexOf('#') > -1) {
+  // Form submitted
 
-// public directory is used for assets
-app.use(express.static(__dirname + '/public'));
+  // Render the mini search bar
+  var search = Handlebars.templates.search(),
+      body   = document.getElementsByTagName("body")[0];
 
-// views directory is used for template files
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+  body.innerHTML = search + "\n\n" + body.innerHTML;
+  
+  // Render the results
+  render();
 
-app.listen(app.get('port'), function() {
-  console.log('Running on port', app.get('port'));
-});
+} else {
+  // Index page
+  var html = "<h2>High Scores</h2>\n" +
+             "<p>Please enter a Github repository URL</p>\n";
 
+  document.getElementsByClassName('wrapper')[0].innerHTML += html; 
+             
+  show_form();
+}
 
-app.get('/', function(req, res) {
-  // check whether the repo GET parameter is a valid URL
-  var url = sanitize_url( req.query.repo )
+// Process the search form
+// Handles the mini search forms, as well as the one on the home page
+document.getElementById('form').onsubmit = function(e) {
+  // Handle form using process_form()
+  e.preventDefault();
+  process_form( document.getElementById('form').url.value );
+  return false;
+};
+
+function show_form() {
+  var form = "<form action='' id='form'>\n" +
+             "\t<input type='text' size='24' name='url' />\n" +
+             "\t<input type='submit' value='1 UP'/>\n" +
+             "</form>\n";
+  
+  // Display the form
+  document.getElementsByClassName('wrapper')[0].innerHTML += form;
+}
+
+function process_form(input) {
+  // check whether the input is a valid URL
+  var url = sanitize_url(input)
   .then(function(url) {
 
     var isURL    = validator.isURL(url, {
-          protocols: ['http','https'],
-          allow_underscores: true
-        });
+      protocols: ['http','https'],
+      allow_underscores: true
+    });
 
     if(isURL) {
-      // if it's a valid url, redirect to /user/repo
+      // if it's a valid url, redirect to #user/repo
       var user = get_user_from_github_url(url),
           repo = get_repo_from_github_url(url);
 
-      res.redirect(user + '/' + repo);
-      return;
+      window.location = window.location.origin + '#' + user + '/' + repo;
+      location.reload();
 
     } else if(url !== '') {
-      // if the user entered an invalid url, render the home page with an error
-      res.render('pages/notfound', { title: '404', error: 'Sorry, but this cat is in another castle!' });
-      return;
+      // if the user entered an invalid url, display error
+      process_error();
     }
 
   }, function(err) {
-
-    // if the user hasn't entered a url, just render the home page
-    res.render('pages/index');
+    // couldn't sanitize url, display error
+    process_error();
   });
-});
+}
 
-app.get('/:user/:repo/?', function(req, res){
-  // get the results
-  var scores = get_high_scores(req.params.user, req.params.repo)
-  .then(function(results) {
+function process_error() {
+  var error = "<h2>404</h2>\n" +
+              "<p>Sorry, but this cat is in another castle!</p>\n" +
+              "<div class='align-center'>\n" +
+              "\t<img src='/img/octocat.png'>\n" +
+              "</div>";
 
-    // render the results
-    res.render('pages/score', { scores: results, owner: req.params.user, repo: req.params.repo });
+  document.getElementsByClassName('wrapper')[0].innerHTML = error;
 
-  }, function(err) {
-    
-    // handle error
-    console.error(err);
-    res.render('pages/notfound', { title: '404', error: 'Sorry, but this cat is in another castle!' });
-  
+  show_form();
+}
+
+function render() {
+  var hash = window.location.hash.replace('#','').split('/'),
+      user = hash[0],
+      repo = hash[1];
+
+  get_high_scores(user,repo)
+  .then(function(scores) {
+    // get the handlebars template
+    var template = Handlebars.templates.results;
+
+    var html = "<h2><a href='/" + user + "'>" + user + "</a> &gt;&gt; <a href='/" + user + "/github-high-scores'>github-high-scores</a> &gt;&gt; <a href='/" + user + "/github-high-scores/high_scores'>High Scores</a></h2>\n" + 
+               template({scores,user,repo});
+
+    document.getElementsByClassName('wrapper')[0].innerHTML = html;
+
   });
-});
-
-app.get('/:user/:repo/high_scores/?', function(req, res){
-  // support for legacy links
-  res.redirect('/' + req.params.user + '/' + req.params.repo);
-});
-
-
-// Credits, help, about pages
-app.get('/credits/?', function(req, res){
-  // render the credits page
-  res.render('pages/credits');
-});
-
-app.get('/help/?', function(req, res){
-  // render the help page
-  res.render('pages/help');
-});
-
-app.get('/about/?', function(req, res){
-  // render the about page
-  res.render('pages/about');
-});
-
-// Error handers
-app.use(function(req, res, next) {
-  console.error('404');
-  res.status(404).render('pages/notfound', { title: '404', error: 'Sorry, but this cat is in another castle!' });
-});
-
-app.use(function(err, req, res, next) {
-  console.error(err.stack);
-  res.status(500).render('pages/notfound', { title: 'Error 500', error: 'Sorry, something broke!' });
-});
-
+}
 
 function get_user_from_github_url(sanitized_github_url) {
   return sanitized_github_url.split('/')[3];
-};
+}
 
 function get_repo_from_github_url(sanitized_github_url) {
   return sanitized_github_url.split('/')[4];
-};
+}
 
 function get_high_scores(user, repo) {
   return new Promise(function(resolve, reject) {
 
-    github.repos.getContributors({
-      owner: user,
-      repo: repo,
-      anon: true
-    }, function(err, res) {
-
-      // if there's an error, reject the promise
-      if(err) {
-        reject(err);
-        return;
-      } else if(typeof(res) == 'undefined') {
-        reject('Repository not found');
-        return;
-      }
+    get_contributors(user,repo)
+    .then(function(response) {
 
       // empty array to contain results
       var results = [];
 
       // score = contributions * 100
       // iterate through each user
-      Promise.all( res.map( function(user) {
 
+      Promise.all( response.map( function(user) {
         // add current user to the results array
         return {
           username : user.login,
@@ -146,15 +136,55 @@ function get_high_scores(user, repo) {
         resolve(results);
       });
 
+    })
+    .catch(function(error) {
+      // if there's an error, reject the promise
+      if(typeof(error) === 'undefined') {
+        reject('Repository not found');
+        return;
+      }
+      reject(error);
+      return;
     });
 
   });
-};
+}
+
+function get_contributors(user, repo) {
+  return new Promise(function(resolve, reject) {
+    try {
+      var options = {
+        host: 'api.github.com',
+        path: '/repos/' + user + '/' + repo + '/contributors'
+      };
+
+      var callback = function(response) {
+        var str = '';
+
+        //another chunk of data has been recieved, so append it to `str`
+        response.on('data', function (chunk) {
+          str += chunk;
+        });
+
+        //the whole response has been recieved, so we just print it out here
+        response.on('end', function () {
+          resolve(JSON.parse(str));
+        });
+      };
+
+      https.request(options, callback).end();
+    
+    } catch(e) {
+      reject('test:' + e);
+    }
+
+  });
+}
 
 function sanitize_url(unsanitized_url) {
   return new Promise(function(resolve, reject) {
 
-    if( typeof(unsanitized_url) === 'undefined') {
+    if( typeof(unsanitized_url) === 'undefined' || '' === unsanitized_url) {
       reject('No query');
       return;
     }
@@ -189,4 +219,4 @@ function sanitize_url(unsanitized_url) {
 
     resolve(url);
   });
-};
+}
