@@ -58,7 +58,7 @@ function process_form(input) {
       var user = get_user_from_github_url(url),
           repo = get_repo_from_github_url(url);
 
-      window.location = window.location.origin + window.location.pathname + '#' + user + '/' + repo;
+      window.location = window.location.origin + '#' + user + '/' + repo;
       location.reload();
 
     } else if(url !== '') {
