@@ -8,13 +8,12 @@
   },
   "main": "index.js",
   "dependencies": {
-    "github": "^5.3.3",
+    "handlebars": "^4.0.5",
     "https": "^1.0.0",
     "validator": "^6.1.0"
   },
   "devDependencies": {
     "browserify": "^13.1.1",
-    "handlebars": "^4.0.5",
     "tape": "^4.6.2"
   },
   "repository": {
