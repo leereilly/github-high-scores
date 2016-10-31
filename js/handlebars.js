@@ -38,6 +38,6 @@ templates['results'] = template({"1":function(container,depth0,helpers,partials,
     + "\" target=\"_lbank\">Tweet this!</a></p>\r\n";
 },"useData":true});
 templates['search'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"fl-right\">\r\n  <form action='/' method=\"GET\">\r\n    <input type=\"text\" name=\"repo\" class=\"small\" />\r\n    <input type=\"submit\" value=\"1 UP\" class=\"small\" />\r\n  </form>\r\n</div>\r\n";
+    return "<div class=\"fl-right\">\r\n  <form action='' id='form'>\r\n    <input type='text' size='24' name='url' class='small' />\r\n    <input type='submit' value='1 UP' class='small' />\r\n  </form>\r\n</div>\r\n";
 },"useData":true});
 })();

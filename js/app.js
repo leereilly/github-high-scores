@@ -7164,14 +7164,15 @@ if (window.location.href.indexOf('#') > -1) {
   // Display the form
   document.getElementsByClassName('wrapper')[0].innerHTML = form;
 
-  // Process the form
-  document.getElementById('form').onsubmit = function(e) {
-    // Handle form using process_form()
-    e.preventDefault();
-    process_form( document.getElementById('form').url.value );
-    return false;
-  };
 }
+
+// Process the form
+document.getElementById('form').onsubmit = function(e) {
+  // Handle form using process_form()
+  e.preventDefault();
+  process_form( document.getElementById('form').url.value );
+  return false;
+};
 
 function process_form(input) {
   // check whether the input is a valid URL
