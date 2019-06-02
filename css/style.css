@@ -1,0 +1,104 @@
+@font-face {
+  font-family: "ArcadeClassic";
+  src: url("../font/ArcadeClassic.otf") format("opentype");
+}
+
+body {
+  font-family: "ArcadeClassic";
+  letter-spacing: 2px;
+  word-spacing: 0.5em;
+  color: white;
+  background: #000000 top center no-repeat;   
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 700px;
+}
+
+h1 {
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+  color: lightblue; 
+}
+
+h3 {
+  color: lightblue;
+}
+
+p {
+  text-align: center;
+}
+
+p.small {
+  font-size: 11px;
+}
+
+p.copyright {
+  font-size: 12px;
+}
+
+a {
+  text-decoration: none; 
+  color: white; 
+}
+
+img {
+  margin-bottom: 1rem;
+}
+
+form {
+  text-align: center;
+}
+
+input {
+  color: #FFFFFF;
+  font-family: ArcadeClassic;
+  font-weight: bold;
+  font-size: 24px;
+  background-color: #72A4D2;
+}
+
+/* Results page */
+
+table {
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  white-space: normal;
+}
+
+th {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px; 
+  color: yellow;
+}
+
+td {
+  font-size: 20px;
+  padding: 10px; 
+}
+
+td:first-child {
+  text-align: right;
+}
+
+.small {
+  font-size: 12px;
+}
+.fl-right {
+  float: right;
+}
+.align-left {
+  text-align: left;
+}
+.align-center {
+  text-align: center;
+}
+.white {
+  color: #fff;
+}

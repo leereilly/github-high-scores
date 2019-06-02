@@ -1,5 +1,0 @@
----
-applications:
-- name: highscore
-  buildpack: https://github.com/cloudfoundry/heroku-buildpack-ruby.git
-  command: ruby app.rb $PORT

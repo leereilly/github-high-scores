@@ -1,0 +1,29 @@
+{
+  "name": "github-high-scores",
+  "version": "2.0.0",
+  "description": "8-bit, 80's-tastic arcadey GitHub contributions viewing environment.",
+  "author": "Lee Reilly",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "handlebars": "^4.0.5",
+    "https": "^1.0.0",
+    "validator": "^6.1.0"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.1",
+    "tape": "^4.6.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leereilly/github-high-scores"
+  },
+  "keywords": [
+    "node",
+    "github",
+    "high scores"
+  ],
+  "license": "ISC"
+}
