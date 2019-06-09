@@ -21,17 +21,17 @@ templates['results'] = template({"1":function(container,depth0,helpers,partials,
 
   return "<table>\r\n  <tr>\r\n    <th>Score</th>\r\n    <th>Avatar</th>\r\n    <th>User</th>\r\n  </tr>\r\n\r\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.scores : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\r\n</table>\r\n\r\n<p class=\"small\">Permalink: <a href=\"http://gitscore.heroku.com/?"
+    + "\r\n</table>\r\n\r\n<p class=\"small\">Permalink: <a href=\"https://leereilly.net/github-high-scores/?"
     + alias4(((helper = (helper = helpers.user || (depth0 != null ? depth0.user : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"user","hash":{},"data":data}) : helper)))
     + "/"
     + alias4(((helper = (helper = helpers.repo || (depth0 != null ? depth0.repo : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"repo","hash":{},"data":data}) : helper)))
-    + "\">http://gitscore.heroku.com/?"
+    + "\">https://leereilly.net/github-high-scores/?"
     + alias4(((helper = (helper = helpers.user || (depth0 != null ? depth0.user : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"user","hash":{},"data":data}) : helper)))
     + "/"
     + alias4(((helper = (helper = helpers.repo || (depth0 != null ? depth0.repo : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"repo","hash":{},"data":data}) : helper)))
     + "</a></p>\r\n\r\n<p class=\"small\"><a href=\"http://twitter.com/share?text=Check+out+the+high+score+chart+for+my+"
     + alias4(((helper = (helper = helpers.repo || (depth0 != null ? depth0.repo : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"repo","hash":{},"data":data}) : helper)))
-    + "+repo+on+GitHub%21&url=http%3A%2F%2Fgitscore.herokuapp.com%2F%3F"
+    + "+repo+on+GitHub%21&url=http%3A%2F%2Fleereilly.net/github-high-scores%2F%3F"
     + alias4(((helper = (helper = helpers.user || (depth0 != null ? depth0.user : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"user","hash":{},"data":data}) : helper)))
     + "/"
     + alias4(((helper = (helper = helpers.repo || (depth0 != null ? depth0.repo : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"repo","hash":{},"data":data}) : helper)))
