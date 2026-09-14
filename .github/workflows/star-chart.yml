@@ -1,0 +1,41 @@
+# .github/workflows/star-chart.yml
+name: Star Chart
+on:
+  schedule:
+    - cron: '17 4 * * *' # daily, off-peak UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: star-chart
+  cancel-in-progress: true
+
+jobs:
+  star-chart:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # only this job needs write, to commit the SVG
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate star chart
+        uses: leereilly/star-chart@v0.2
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          output: assets/star-chart.svg
+          animation: once
+
+      - name: Commit chart if it changed
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/star-chart.svg
+          if git diff --cached --quiet; then
+            echo 'No chart changes to commit.'
+          else
+            git commit -m 'chore: update star chart'
+            git push
+          fi
