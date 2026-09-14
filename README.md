@@ -2,6 +2,8 @@
 
 Github High Scores is a fun way to rank Github repository contributors in a 8-bit, 80's-tastic viewing environment.
 
+![](assets/star-chart.svg)
+
 ## Installation
 
 This is a Ruby Sinatra app, so you'll need to know some Ruby-Fu to get it working locally.
